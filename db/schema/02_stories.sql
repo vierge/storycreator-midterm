@@ -9,6 +9,7 @@ CREATE TABLE stories (
   name VARCHAR(255) NOT NULL,
   date_created TIMESTAMP NOT NULL DEFAULT Now(),
   date_completed TIMESTAMP,
-  is_locked BOOLEAN DEFAULT false
+  is_locked BOOLEAN DEFAULT false,
+  content_tags VARCHAR(255)[]
 );
 
