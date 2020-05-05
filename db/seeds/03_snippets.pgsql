@@ -5,7 +5,7 @@ INSERT INTO snippets (story_id, user_id, date_created, vote_count, date_accepted
 ),
 (
   1, 2, '2020-05-01', 42, '2020-05-03',
-  ''
+  'What can I say? Its only day 5 of this monstrous month and I’m already moaning about it :wink: The buds and blooming flowers have me wheezing and sneezing, my eyes are like little bloodshot beads embedded in the puffy pink marshmallow beds that are my eyelids. What other mishaps have befallen me, you’re probably asking, gripped by this fascinating tale! Well, in Montreal it’s what we lovingly call dog sh*t season, when the snow melts away, reduced to pleasant piles of dust and dirt by the side of the road, revealing the utter lack of responsibility a large chunk of dog owners in this city seem to feel for their canine companions. Inexplicably, much of these remains are left inside bags! We may never know what compels these strange souls to go through the effort of bagging, but then leaving, the poop. A true mystery. It’s not all bad though! As a homebody, I’ve been thoroughly enjoying this global pandemic thing we’ve got going on, so hey, there’s a silver lining in everything, right?'
 ),
 (
   2, 3, '2020-05-03', DEFAULT, '2020-05-03',

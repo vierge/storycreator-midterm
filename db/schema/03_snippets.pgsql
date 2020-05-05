@@ -13,4 +13,3 @@ CREATE TABLE snippets (
   date_accepted TIMESTAMP,
   contents TEXT
 );
-
