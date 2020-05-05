@@ -16,6 +16,7 @@
   </head>
 
   <body>
+
     <nav>
       <div>
         <span class='logo'>JAMMER</span>
@@ -27,57 +28,93 @@
         <span>Register</span>
       </div>
     </nav>
+
     <main class='feed-container'>
-      <section class='stories-container'>
+
+    <!-- CONTEXT bar for feeds -->
+      <header class='context-bar'>
+        <div><span>context</span></div>
+        <div><span>context</span></div>
+      </header>
+
+    <!-- LEFT FEED -->
+      <section class='stories-container-left'>
+
         <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ad cumque animi obcaecati, sint corporis harum fugit provident esse totam consequatur at amet accusamus laudantium culpa temporibus repellat quam ipsa.</p>
+          <header>
+            <a href=#><h1 class='story-title'>story_name</h1></a>
+            <a class='story-owner' href=#>@owner_username</a>
+          </header>
+
+          <section class='snippets-container'>
+
+            <section class='snippet'>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis architecto minima nostrum corporis vitae asperiores, qui sed sunt molestiae totam et animi, rerum provident cupiditate voluptatum omnis neque reiciendis delectus.</p>
+            </section>
+
+            <section class='snippet'>
+              <header class='meta-data'>
+                <a class='snippet_contributor' href=#>@snippet_contributor</a>
+                <div class='snippet-upvotes'>(45)</div>
+              </header>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+            </section>
+
+            <section class='snippet'>
+              <header class='meta-data'>
+                <a class='snippet_contributor' href=#>@snippet_contributor</a>
+                <div class='snippet-upvotes'>(45)</div>
+              </header>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+            </section>
+
+            <section class='snippet'>
+              <header class='meta-data'>
+                <a class='snippet_contributor' href=#>@snippet_contributor</a>
+                <div class='snippet-upvotes'>(45)</div>
+              </header>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+            </section>
+
           </section>
-          <footer></footer>
+
+          <footer>
+            <div>tags tags tags</div>
+            <div>
+              <div>date_created</div>
+              <div>last_updated</div>
+              <a href=#>contribute</a>
+            </div>
+          </footer>
+
         </article>
-        <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ad cumque animi obcaecati, sint corporis harum fugit provident esse totam consequatur at amet accusamus laudantium culpa temporibus repellat quam ipsa.</p>
-          </section>
-          <footer></footer>
-        </article>
-        <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ratione temporibus dolor commodi ut ea, nulla maiores deserunt nostrum dignissimos fuga ex debitis nesciunt ab autem tenetur! Dolores, minus repudiandae.</p>
-          </section>
-          <footer></footer>
-        </article>
+
       </section>
-      <section class='stories-container'>
+
+    <!-- RIGHT FEED -->
+      <section class='stories-container-right'>
         <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ad cumque animi obcaecati, sint corporis harum fugit provident esse totam consequatur at amet accusamus laudantium culpa temporibus repellat quam ipsa.</p>
+          <header>
+            <a class='story-title'>story_name</a>
+            <a class='story-owner' href=#>@owner_username</a>
+          </header>
+
+          <section class='snippets-container'>
+
+            <section class='snippet'>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+            </section>
+
           </section>
-          <footer></footer>
-        </article>
-        <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ad cumque animi obcaecati, sint corporis harum fugit provident esse totam consequatur at amet accusamus laudantium culpa temporibus repellat quam ipsa.</p>
-          </section>
-          <footer></footer>
-        </article>
-        <article class='story'>
-          <header></header>
-          <section>
-            <header>Story Title</header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ad cumque animi obcaecati, sint corporis harum fugit provident esse totam consequatur at amet accusamus laudantium culpa temporibus repellat quam ipsa.</p>
-          </section>
-          <footer></footer>
+
+          <footer>
+            <div>tags tags tags</div>
+            <div>
+              <div>date_created</div>
+              <div>last_updated</div>
+              <a href=#>contribute</a>
+            </div>
+          </footer>
         </article>
       </section>
     </main>
