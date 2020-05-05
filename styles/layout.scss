@@ -6,7 +6,7 @@ $primaryPurple: #9B51E0;
 $secondaryPurple: #b48ff0;
 $darkGrey: #C4C4C4;
 $mediumGrey: #E7E8E8;
-$acceptBtn : #7ABF43;
+$acceptGreen : #7ABF43;
 
 $navHeight: 6vh;
 $contextHeight: 3vh;
@@ -19,6 +19,11 @@ body {
 
   a {
     text-decoration: none;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
   }
 
   nav {
@@ -44,8 +49,6 @@ body {
 
     button {
       color: $primaryPurple;
-      background-color: transparent;
-      border: none;
     }
 
     button:disabled {
@@ -81,22 +84,26 @@ body {
       flex-grow: 1;
     }
   }
-  .stories-container-left {
+
+  .primary-container {
     grid-row-start: 3;
     grid-column-start: 2;
     grid-column-end: 3;
   }
-  .stories-container-right {
+  .secondary-container {
     grid-row-start: 3;
     grid-column-start: 4;
     grid-column-end: 5;
   }
 
-  .story {
+  article.story {
     color: $primaryPurple;
     background-color: $mediumGrey;
     margin: 1vw;
-    padding: 2vh 2vw;
+    padding: 2vh 1vw 2vh 2vw;
+
+    display: flex;
+    flex-direction: column;
 
     header {
       display: flex;
@@ -104,8 +111,48 @@ body {
       justify-content: space-between;
 
       h1 {
-        font-size: 18pt;
+        font-size: 16pt;
       }
+    }
+
+    main {
+      display: flex;
+      flex-direction: row;
+
+      article.snippets-container {
+        padding-right: 1vw;
+
+        .snippet.accepted {
+          header.meta-data {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          p {
+            color: black;
+          }
+        }
+      }
+
+      aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        button {
+          margin-top: 1vh;
+        }
+
+        .view-pending {
+          color: white;
+          border: white 1pt solid;
+        }
+
+        .lock-story {
+          color: $acceptGreen;
+        }
+      }
+
     }
 
     footer {
@@ -122,19 +169,50 @@ body {
           margin-right: 1vw;
         }
       }
+    }
+  }
 
+  .snippet.pending {
+    color: black;
+    background-color: $secondaryPurple;
+    margin: 1vw;
+    padding: 2vh 1vw;
+
+    display: flex;
+    flex-direction: column;
+
+    a, button {
+      color: white;
     }
 
-    .snippets-container {
-      .snippet{
-        .meta-data {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-        p {
-          color: black;
-        }
+    header {
+      flex-grow: 1;
+    }
+
+    main {
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: row;
+
+      footer > span {
+        color: $darkGrey;
+      }
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      button {
+        margin-top: 1vh;
+      }
+      span {
+        text-align: center;
+      }
+      button.accept {
+        color: $acceptGreen;
       }
     }
   }
