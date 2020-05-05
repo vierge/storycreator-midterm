@@ -1,9 +1,55 @@
 // See: https://sass-lang.com/
+$primaryFont: 'Roboto', sans-serif;
+
+$primaryPurple: #9B51E0;
+$secondaryPurple: #b48ff0;
+$darkGrey: #C4C4C4;
+$mediumGrey: #E7E8E8;
+$acceptBtn : #7ABF43;
 
 body {
-  background-color: #EEE;
+  background-color: white;
+  color: $primaryPurple;
+  font-family: $primaryFont;
+  font-weight: 300;
 
-  h1 {
-    color: #244751;
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $darkGrey;
+    width: 100%;
+    height: 6vh;
+    padding: 0 4vh;
+
+    div {
+      align-self: center;
+    }
+
+    button {
+      color: $primaryPurple;
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .feed-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .stories-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .story {
+    color: $primaryPurple;
+    background-color: $mediumGrey;
+    align-self: center;
+    margin: 1vw;
+    padding: 1vw;
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
   }
 }
