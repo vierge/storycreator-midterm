@@ -11,4 +11,3 @@ CREATE TABLE users (
   is_active BOOLEAN DEFAULT true,
   here_for_tags TEXT ARRAY
 );
-
