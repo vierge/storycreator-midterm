@@ -19,13 +19,17 @@
 
     <nav>
       <div>
-        <span class='logo'>JAMMER</span>
-        <button>All Stories</button>
-        <button>Search</button>
+        <button class='logo'>jammer</button>
+        <button>ALL</button>
+        <button disabled>Stories</button>
+        <button disabled>Contributions</button>
+        <button disabled>Favourites</button>
+        <button>+ New Story</button>
+        <button disabled>Search</button>
       </div>
       <div>
         <button>Login</button>
-        <span>Register</span>
+        <button disabled>Register</button>
       </div>
     </nav>
 
@@ -33,8 +37,8 @@
 
     <!-- CONTEXT bar for feeds -->
       <header class='context-bar'>
-        <div><span>context</span></div>
-        <div><span>context</span></div>
+        <div>context</div>
+        <div>context</div>
       </header>
 
     <!-- LEFT FEED -->
@@ -79,11 +83,11 @@
           </section>
 
           <footer>
-            <div>tags tags tags</div>
-            <div>
+            <div class='tags'>tags tags tags</div>
+            <div class='state'>
               <div>date_created</div>
               <div>last_updated</div>
-              <a href=#>contribute</a>
+              <div><a href=#>contribute</a></div>
             </div>
           </footer>
 
@@ -93,7 +97,9 @@
 
     <!-- RIGHT FEED -->
       <section class='stories-container-right'>
+
         <article class='story'>
+
           <header>
             <a class='story-title'>story_name</a>
             <a class='story-owner' href=#>@owner_username</a>
@@ -115,8 +121,12 @@
               <a href=#>contribute</a>
             </div>
           </footer>
+
         </article>
+
       </section>
+
     </main>
+
   </body>
 </html>

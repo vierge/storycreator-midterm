@@ -1,4 +1,5 @@
 // See: https://sass-lang.com/
+
 $primaryFont: 'Roboto', sans-serif;
 
 $primaryPurple: #9B51E0;
@@ -8,12 +9,17 @@ $mediumGrey: #E7E8E8;
 $acceptBtn : #7ABF43;
 
 $navHeight: 6vh;
+$contextHeight: 3vh;
 
 body {
   background-color: white;
   color: $primaryPurple;
   font-family: $primaryFont;
   font-weight: 300;
+
+  a {
+    text-decoration: none;
+  }
 
   nav {
     position: fixed;
@@ -32,10 +38,18 @@ body {
       align-self: center;
     }
 
+    .logo {
+      text-transform: uppercase;
+    }
+
     button {
       color: $primaryPurple;
       background-color: transparent;
       border: none;
+    }
+
+    button:disabled {
+      color: $mediumGrey;
     }
   }
 
@@ -44,8 +58,9 @@ body {
 
     display: grid;
     grid-template-columns: 3vw auto 3vw auto 3vw;
-    grid-template-rows: 2vh auto auto;
+    grid-template-rows: $contextHeight 3vh auto;
   }
+
   .context-bar {
     background-color: $mediumGrey;
     grid-row-start: 1;
@@ -58,7 +73,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
 
+    color: $darkGrey;
+
     div {
+      align-self: center;
       text-align: center;
       flex-grow: 1;
     }
@@ -78,16 +96,42 @@ body {
     color: $primaryPurple;
     background-color: $mediumGrey;
     margin: 1vw;
-    padding: 1vw;
+    padding: 2vh 2vw;
 
     header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
       h1 {
         font-size: 18pt;
       }
     }
 
+    footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .state {
+        display: flex;
+        flex-direction: row;
+        justify-content: inherit;
+
+        div {
+          margin-right: 1vw;
+        }
+      }
+
+    }
+
     .snippets-container {
       .snippet{
+        .meta-data {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
         p {
           color: black;
         }
