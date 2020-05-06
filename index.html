@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Jammer</title>
+
+    <!-- google material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+
+<!-- NAV -->
+    <nav>
+      <div>
+        <button class='logo'>jammer</button>
+        <button>ALL</button>
+        <button disabled>My Stories</button>
+        <button disabled>My Contributions</button>
+        <button disabled>Favourites</button>
+        <button>+ New Story</button>
+        <button disabled>Search</button>
+      </div>
+      <div>
+        <button>Login</button>
+        <button disabled>Register</button>
+      </div>
+    </nav>
+
+<!-- THE MOTHER OF ALL CONTAINERS -->
+    <main class='feed-container'>
+
+  <!-- CONTEXT bar for feeds -->
+      <header class='context-bar'>
+        <div>context</div>
+        <div>context</div>
+      </header>
+
+  <!-- LEFT FEED -->
+      <section class='primary-container'>
+
+    <!-- STORY -->
+        <article class='story'>
+          <header>
+            <a href=#><h1 class='story-title'>story_name</h1></a>
+            <a class='story-owner' href=# >@owner_username</a>
+          </header>
+
+          <main>
+            <article class='snippets-container'>
+
+              <section class='snippet initial'>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis architecto minima nostrum corporis vitae asperiores, qui sed sunt molestiae totam et animi, rerum provident cupiditate voluptatum omnis neque reiciendis delectus.</p>
+              </section>
+
+              <section class='snippet accepted'>
+                <header class='meta-data'>
+                  <a class='snippet_contributor' href=#>@snippet_contributor</a>
+                  <div class='snippet-upvotes'>(45)</div>
+                </header>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+              </section>
+
+              <section class='snippet accepted'>
+                <header class='meta-data'>
+                  <a class='snippet_contributor' href=#>@snippet_contributor</a>
+                  <div class='snippet-upvotes'>(45)</div>
+                </header>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+              </section>
+            </article>
+
+            <aside>
+              <button class='view-pending'>69</button>
+              <button class='contribute'><span class="material-icons">create</span></button>
+              <button class='lock-story'>
+                <span class="material-icons">done_all</span>
+              </button>
+            </aside>
+          </main>
+
+          <footer>
+            <div class='tags'>tags tags tags</div>
+            <div class='state'>
+              <div>date_created</div>
+              <div>|</div>
+              <div>last_updated</div>
+              <div><a href=#>+ contribute</a></div>
+              <div><a href=#>view contributions</a></div>
+            </div>
+          </footer>
+      <!-- END OF STORY -->
+        </article>
+
+    <!-- END OF LEFT (primary) FEED -->
+      </section>
+
+  <!-- RIGHT FEED -->
+      <section class='secondary-container'>
+
+    <!-- PENDING SNIPPET -->
+        <article class='snippet pending'>
+          <header>
+            <a class='snippet_contributor' href=#>@snippet_contributor</a>
+          </header>
+          <main>
+            <section>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
+            </section>
+            <aside>
+              <button class='upvote'>
+                <span class="material-icons">keyboard_arrow_up</span>
+              </button>
+              <span>45</span>
+              <button class='accept'>
+                <span class="material-icons">done</span>
+              </button>
+            </aside>
+          </main>
+          <footer>
+            <span>date_created</span>
+          </footer>
+      <!-- END OF SNIPPET -->
+        </article>
+
+    <!-- END OF RIGHT (secondary) FEED -->
+      </section>
+
+  <!-- END OF FEEDS CONTAINER -->
+    </main>
+  </body>
+</html>
+
