@@ -1,5 +1,8 @@
 // setup and connect to database
 
+// reminder to comment this code, mara ><
+
+
 const { Pool } = require('pg');
 const dbParams = require('../../lib/db.js');
 const db = new Pool({
