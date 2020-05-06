@@ -78,7 +78,13 @@ body {
 
     color: $darkGrey;
 
-    div {
+    .context-primary {
+      align-self: center;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .context-secondary {
       align-self: center;
       text-align: center;
       flex-grow: 1;
