@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -39,8 +40,8 @@
 
   <!-- CONTEXT bar for feeds -->
       <header class='context-bar'>
-        <div>context</div>
-        <div>context</div>
+        <div class='context-primary'>context</div>
+        <div class='context-secondary'>context</div>
       </header>
 
   <!-- LEFT FEED -->
@@ -87,7 +88,7 @@
           </main>
 
           <footer>
-            <div class='tags'>tags tags tags</div>
+            <p class='tags'>tags tags tags</p>
             <div class='state'>
               <div>date_created</div>
               <div>|</div>
@@ -105,7 +106,7 @@
   <!-- RIGHT FEED -->
       <section class='secondary-container'>
 
-    <!-- PENDING SNIPPET -->
+      <!-- PENDING SNIPPET -->
         <article class='snippet pending'>
           <header>
             <a class='snippet_contributor' href=#>@snippet_contributor</a>
@@ -135,6 +136,7 @@
 
   <!-- END OF FEEDS CONTAINER -->
     </main>
+
+    <div hidden class='modal-overlay'></div>
   </body>
 </html>
-
