@@ -73,20 +73,17 @@ const getPosts = async function(obj) {
     `
   }
 
-
-
-
   const res = {
     left: await db.query(grab(conditionLeft)),
     right: await db.query(grab(conditionRight))
     };
 
-  console.log('LEFT:');
-  console.log(res.left.rows);
-  console.log('RIGHT:');
-  console.log(res.right.rows);
+  // console.log('LEFT:');
+  // console.log(res.left.rows);
+  // console.log('RIGHT:');
+  // console.log(res.right.rows);
 
-  return [];
+  return [res.left, res.right];
 }
 
 getPosts(dummyArg);
