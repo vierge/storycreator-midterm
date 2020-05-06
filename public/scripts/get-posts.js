@@ -20,19 +20,41 @@ console.log(process.argv);
 const args = process.argv; // This is for command line testing... remove on deployment
 console.log(args[2]);
 
+// welcome to getPosts!
+// getPosts is an ASYNC function that takes as an argument an object like the one below:
+//
+// const dummyArg = {              // this is the anatomy of a getPost argument
+//   user: 'vierge',               // current user's username
+//   date: '2020-05-05 12:00:00',  // date of request in ISO format (i don't know that this is actually necessary)
+//   flags: args[2]                // this is the flag that tells the function what to pull
+// }
+//
+// getPosts queries the database based on the flag and returns a ***PROMISE***
+// containing a 2 dimensional array:
+// [[left column rows], [right column rows]]
+//
+// inside an async function, pass getPosts() as a const to postRender()
+// to generate HTML and populate the main area of the DOM.
+
+// TO DO: figure out a mobile solution. IDEAS: pass an isMobile boolean as an argument
+// and make a single query instead of two?
+
+
 const dummyArg = {              // this is the anatomy of a getPost argument
   user: 'vierge',               // current user's username
-  date: '2020-05-05 12:00:00',  // date of request (i don't know that this is actually necessary)
-  flags: args[2]                   // this is the flag that tells the function what to pull
+  date: '2020-05-05 12:00:00',  // date of request in ISO format (i don't know that this is actually necessary)
+  flags: args[2]                // this is the flag that tells the function what to pull
 }
+
+
 
 const getPosts = async function(obj) {
 
-  const { user, date, flags } = obj;
-  let conditionLeft = '';
-  let conditionRight = '';
+  const { user, date, flag } = obj;
+  let conditionLeft = ''; //left column
+  let conditionRight = ''; //right column
 
-    switch(flags){
+    switch(flag){
     case '-u': // first view: pull all complete and incomplete stories
       conditionLeft = `WHERE stories.date_completed IS NULL`;       // incomplete left
       conditionRight = `WHERE stories.date_completed IS NOT NULL`;  // complete right
@@ -87,3 +109,6 @@ const getPosts = async function(obj) {
 }
 
 getPosts(dummyArg);
+
+
+module.exports = getPosts
