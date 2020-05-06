@@ -16,7 +16,7 @@ INSERT INTO snippets (story_id, user_id, date_created, vote_count, date_accepted
   'I wuv mewtdown may =^w^= i has gotten many pets, and mai fwiends aw aways awound 2 feed me uwu!!! howevow, my fwen mawa is aways weawy sad! dey cwy wots meow. i want 2 hewp dem ;w; mew r teh best mawa ilu ok uwu;'
 ),
 (
-  1, 4, '2020-05-03', DEFAULT, NULL,
+  1, 4, '2020-05-06', DEFAULT, NULL,
   'Hell is other people. My DMs are open.'
 ),
 (
