@@ -144,8 +144,12 @@ body {
         }
 
         .view-pending {
-          color: white;
-          border: white 1pt solid;
+          color: $primaryPurple;
+          border: $primaryPurple 1pt solid;
+        }
+
+        .contribute {
+          color: $primaryPurple;
         }
 
         .lock-story {
@@ -172,7 +176,7 @@ body {
     }
   }
 
-  .snippet.pending {
+  article.snippet.pending {
     color: black;
     background-color: $secondaryPurple;
     margin: 1vw;
@@ -184,7 +188,6 @@ body {
     a, button {
       color: white;
     }
-
     header {
       flex-grow: 1;
     }
@@ -194,10 +197,6 @@ body {
 
       display: flex;
       flex-direction: row;
-
-      footer > span {
-        color: $darkGrey;
-      }
     }
 
     aside {
@@ -214,6 +213,10 @@ body {
       button.accept {
         color: $acceptGreen;
       }
+    }
+
+    footer > span {
+      color: $darkGrey;
     }
   }
 }
