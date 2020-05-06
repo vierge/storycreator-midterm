@@ -1,24 +1,6 @@
-// setup and connect to database
-// TESTING POOL vvvv
-
-const { Pool } = require('pg');
-// const dbParams = require('../../lib/db.js');
-const db = new Pool({
-  host: 'localhost',
-  port: 5432,
-  user: 'labber',
-  password: 'labber',
-  database: 'jammer'
-});
-db.connect();
-
-let result = '';
-
-// TESTING POOL^^^^
-
-console.log(process.argv);
-const args = process.argv; // This is for command line testing... remove on deployment
-console.log(args[2]);
+// console.log(process.argv);
+// const args = process.argv; // This is for command line testing... remove on deployment
+// console.log(args[2]);
 
 // welcome to getPosts!
 // getPosts is an ASYNC function that takes as an argument an object like the one below:
@@ -40,17 +22,17 @@ console.log(args[2]);
 // and make a single query instead of two?
 
 
-const dummyArg = {              // this is the anatomy of a getPost argument
-  user: 'vierge',               // current user's username
-  date: '2020-05-05 12:00:00',  // date of request in ISO format (i don't know that this is actually necessary)
-  flags: args[2]                // this is the flag that tells the function what to pull
-}
+// const dummyArg = {              // this is the anatomy of a getPost argument
+//   user: 'vierge',               // current user's username
+//   date: '2020-05-05 12:00:00',  // date of request in ISO format (i don't know that this is actually necessary)
+//   flags: args[2]                // this is the flag that tells the function what to pull
+// }
 
 
 
 const getPosts = async function(obj) {
 
-  const { user, date, flag } = obj;
+  const { db, user, date, flag } = obj;
   let conditionLeft = ''; //left column
   let conditionRight = ''; //right column
 
@@ -105,10 +87,7 @@ const getPosts = async function(obj) {
   // console.log('RIGHT:');
   // console.log(res.right.rows);
 
-  return [res.left, res.right];
+  return [res.left, res.right.rows]
+
 }
-
-getPosts(dummyArg);
-
-
-module.exports = getPosts
+module.exports = getPosts;
