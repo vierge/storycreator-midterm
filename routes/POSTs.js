@@ -6,7 +6,8 @@ module.exports = (db) => {
     // POSTING A SNIPPET
   router.post("/:id", function(req, res) {
 
-    const userID = 1;
+// USERID HARDCODED, NEED cookies
+    const userID = 2;
     const storyID = req.params.id;
     const snippetText = req.body.snippetText;
     console.log(snippetText);
