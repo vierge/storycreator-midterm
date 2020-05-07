@@ -1,4 +1,4 @@
-.modal {
+.modal-active {
   position: fixed;
   z-index: 97;
 
@@ -7,7 +7,7 @@
   transform: translate(-50%, -50%);
 
   background-color: #E7E8E8;
-  height: 50vh;
+  height: 60vh;
   width: 75vw;
 
   display: flex;
@@ -15,11 +15,22 @@
   justify-content: center;
 
   padding: 2vh;
-}
 
-.write-snippet {
-  height: 50%;
-  margin: 2vh 0;
+  textarea {
+    resize: none;
+    border-radius: 5px;
+    border-color: #C4C4C4;
+    height: 50%;
+    margin: 2vh 0;
+  }
+
+  input {
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #C4C4C4;
+    margin: 2vh 0;
+  }
 }
 
 .modal-overlay {
