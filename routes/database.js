@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const getPosts = require('../public/scripts/get-posts.js');
+const getPosts = require('../helper-functions/get-posts.js');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
