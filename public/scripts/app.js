@@ -124,6 +124,9 @@ const createThread = (data, target) => {
 );
 }
 
+
+// FOR DEV REFERENCE: ANATOMY OF A POST
+
 // 0: {
 // born_on: "2020-05-01T00:00:00.000Z"
 // completed_on: null
@@ -136,60 +139,5 @@ const createThread = (data, target) => {
 // 0: "journalism"
 // 1: "quarantine"
 // 2: "sadness"
+// thread_id: 1
 // }
-
-
-// <!-- STORY -->
-// <article class='story'>
-//   <header>
-//     <a href=#><h1 class='story-title'>story_name</h1></a>
-//     <a class='story-owner' href=# >@owner_username</a>
-//   </header>
-
-//   <main>
-//     <article class='snippets-container'>
-
-//       <section class='snippet initial'>
-//         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis architecto minima nostrum corporis vitae asperiores, qui sed sunt molestiae totam et animi, rerum provident cupiditate voluptatum omnis neque reiciendis delectus.</p>
-//       </section>
-
-//       <section class='snippet accepted'>
-//         <header class='meta-data'>
-//           <a class='snippet_contributor' href=#>@snippet_contributor</a>
-//           <div class='snippet-upvotes'>(45)</div>
-//         </header>
-//         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
-//       </section>
-
-//       <section class='snippet accepted'>
-//         <header class='meta-data'>
-//           <a class='snippet_contributor' href=#>@snippet_contributor</a>
-//           <div class='snippet-upvotes'>(45)</div>
-//         </header>
-//         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, dolorum soluta, optio est temporibus vel labore repellendus blanditiis similique perspiciatis placeat quas vero veritatis illo saepe esse quam nesciunt. Natus?</p>
-//       </section>
-//     </article>
-
-//     <aside>
-//       <button class='view-pending'>69</button>
-//       <button class='contribute'><span class="material-icons">create</span></button>
-//       <button class='lock-story'>
-//         <span class="material-icons">done_all</span>
-//       </button>
-//     </aside>
-//   </main>
-
-//   <footer>
-//     <p class='tags'>tags tags tags</p>
-//     <div class='state'>
-//       <div>date_created</div>
-//       <div>|</div>
-//       <div>last_updated</div>
-//       <div><a href=#>+ contribute</a></div>
-//       <div><a href=#>view contributions</a></div>
-//     </div>
-//   </footer>
-// <!-- END OF STORY -->
-// </article>
-
-
