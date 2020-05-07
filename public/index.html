@@ -14,6 +14,7 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/app-b.js"></script>
   </head>
 
   <body>
@@ -26,7 +27,7 @@
         <button disabled>My Stories</button>
         <button disabled>My Contributions</button>
         <button disabled>Favourites</button>
-        <button>+ New Story</button>
+        <button class='create-new-story'>+ New (TESTING SNIPPET)</button>
         <button disabled>Search</button>
       </div>
       <div>
@@ -139,19 +140,20 @@
       </section>
 
     <!-- MODALS: use CLASS 'modal-active' to unhide -->
-
+      <!-- SNIPPETTTTT -->
       <div hidden class="" id='modal-write-snippet'>
-        <form method='POST' action='INSERT ROUTE HERE'></form>
+        <form method='POST' action='stories/:id/'>
+        <!-- where does story ID go? better place to catch on submit -->
           <label for="write-snippet">Write a contribution!</label>
-          <!-- where does story ID go? better place to catch on submit -->
-          <div hidden class='story-id'></div>
-          <textarea name="text" class="write-snippet"></textarea>
+          <textarea name="snippetText" class="write-snippet" id="snippet-text"></textarea>
           <button type="submit" class='send-contribution'>contribute</button>
+          <button class='close-modal'>cancel</button>
         </form>
       </div>
 
+<!-- START A STORY -->
       <div hidden class="" id='modal-write-story'>
-        <form method='POST' action='INSERT ROUTE HERE'></form>
+        <form method='POST' action='INSERT ROUTE HERE'>
           <label for="write-story">Start a story!</label>
           <input placeholder='Title'>
           <textarea name="text" class="write-snippet" placeholder='Story Text'></textarea>

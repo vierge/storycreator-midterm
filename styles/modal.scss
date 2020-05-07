@@ -16,11 +16,17 @@
 
   padding: 2vh;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   textarea {
     resize: none;
     border-radius: 5px;
     border-color: #C4C4C4;
-    height: 50%;
+    height: 200px;
     margin: 2vh 0;
   }
 
@@ -52,5 +58,15 @@
   height: 50px;
   width: 120px;
   align-self: center;
+}
+
+.close-modal {
+  background-color: transparent;
+  color: grey;
+  border-radius: 5px;
+  height: auto;
+  width: 120px;
+  align-self: center;
+  margin-top: 20px;
 }
 

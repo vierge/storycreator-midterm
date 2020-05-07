@@ -41,6 +41,8 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const databaseRoutes = require("./routes/database");
+const postRoutes = require("./routes/posts");
+// CREATE AND REQUIRE NEW DOC FOR SNIPPETS GET
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -48,6 +50,22 @@ app.use("/api/users", usersRoutes(db));
 // app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/database", databaseRoutes(db));
 // Note: mount other resources here, using the same pattern above
+app.use("/stories", postRoutes(db));
+
+// app.use("/api/snippets", SNIPPETS GET(db));
+
+// router.get("/", (req, res) => {
+//   db.query(`SELECT * FROM snippets;`)
+//     .then(data => {
+//       const users = data.rows;
+//       res.json({ users });
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// });
 
 
 // Home page
