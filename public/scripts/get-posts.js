@@ -37,15 +37,15 @@ const getPosts = async function(obj) {
   let conditionRight = ''; //right column
 
     switch(flag){
-    case '-u': // first view: pull all complete and incomplete stories
+    case 'home': // first view: pull all complete and incomplete stories
       conditionLeft = `WHERE stories.date_completed IS NULL`;       // incomplete left
       conditionRight = `WHERE stories.date_completed IS NOT NULL`;  // complete right
       break;
-    case '-v': // select only completed snippets
+    case 'userSnippets': // TBC: user snippets view: pls define a user
       conditionLeft = `WHERE snippets.date_accepted IS NOT NULL`;
       conditionRight = `WHERE snippets.date_accepted IS NULL`;
       break;
-    case '-s': // search for stories with a name like.....
+    case 'story': // search for stories with a name like.....
       conditionLeft = `WHERE stories.name LIKE '%May%' AND snippets.date_accepted IS NOT NULL`;
       conditionRight = `WHERE stories.name LIKE '%May%' AND snippets.date_accepted IS NULL
                         AND snippets.date_created >= (
@@ -65,6 +65,7 @@ const getPosts = async function(obj) {
     stories.date_created AS born_on,
     stories.date_completed AS completed_on,
     snippets.contents AS content,
+    snippets.date_created AS date_submitted,
     snippets.date_accepted AS snippet_accepted_date,
     users2.username AS snippet_author,
     stories.content_tags AS tags
@@ -87,7 +88,7 @@ const getPosts = async function(obj) {
   // console.log('RIGHT:');
   // console.log(res.right.rows);
 
-  return [res.left, res.right.rows]
+  return [res.left, res.right]
 
 }
 module.exports = getPosts;
