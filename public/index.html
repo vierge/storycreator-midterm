@@ -147,16 +147,16 @@
           <label for="write-snippet">Write a contribution!</label>
           <textarea name="snippetText" class="write-snippet" id="snippet-text"></textarea>
           <button type="submit" class='send-contribution'>contribute</button>
-          <button class='close-modal'>cancel</button>
         </form>
+        <button class='close-modal'>cancel</button>
       </div>
 
 <!-- START A STORY -->
       <div hidden class="" id='modal-write-story'>
         <form method='POST' action='INSERT ROUTE HERE'>
           <label for="write-story">Start a story!</label>
-          <input placeholder='Title'>
-          <textarea name="text" class="write-snippet" placeholder='Story Text'></textarea>
+          <input name='storyTitle' placeholder='Title'>
+          <textarea name="storyText" class="write-snippet" placeholder='Story Text'></textarea>
           <input placeholder='Tags'>
           <button type="submit" class='send-contribution'>contribute</button>
         </form>
