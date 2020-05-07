@@ -12,7 +12,7 @@ module.exports = (db) => {
       flag: queryFlag
     }).then(data => {
       const left = data[0].rows;
-      const right = data[0].rows;
+      const right = data[1].rows;
       res.json({ left, right });
     });
   });
