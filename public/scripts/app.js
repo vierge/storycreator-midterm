@@ -7,8 +7,8 @@ $(() => {
       console.log(response.left);
       console.log(response.right);
       console.log('this is where we need to be!');
-      renderPosts(response.left, 'left');
-      renderPosts(response.right, 'right');
+      renderPosts(response.left, '.primary-container');
+      renderPosts(response.right, '.secondary-container');
       console.log("CAST MAGIC");
     }
   })
@@ -59,7 +59,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
 const createAcceptedPost = function (data, target) {
   const author = data.snippet_author;
   const text = data.content;
-  const thread = data.story_id;
+  const thread = data.thread_id;
   // UPVOTES o.o
 
   return $(`${target} #${thread} main`).append(`
@@ -77,7 +77,7 @@ const createAcceptedPost = function (data, target) {
 
 const createThread = (data, target) => {
 
-  const thread = data.story_id;
+  const thread = data.thread_id;
   const name = data.name;
   const owner = data.story_owner;
   const initialText = data.contents;
@@ -87,38 +87,38 @@ const createThread = (data, target) => {
   return $(target).prepend(`
   <!-- STORY -->
   <article class='story'>
-  <header>
-    <a href=#><h1 class='story-title'>${name}</h1></a>
-    <a class='story-owner' href=# >@${owner}</a>
-  </header>
+    <header>
+      <a href=#><h1 class='story-title'>${name}</h1></a>
+      <a class='story-owner' href=# >@${owner}</a>
+    </header>
 
-  <main>
-    <article class='snippets-container' id=${thread}>
+    <main>
+      <article class='snippets-container' id=${thread}>
 
-      <section class='snippet initial'>
-        <p>${initialText}</p>
-      </section>
+        <section class='snippet initial'>
+          <p>${initialText}</p>
+        </section>
 
-    <aside>
-      <button class='view-pending'>69</button>
-      <button class='contribute'><span class="material-icons">create</span></button>
-      <button class='lock-story'>
-        <span class="material-icons">done_all</span>
-      </button>
-    </aside>
-  </main>
+      <aside>
+        <button class='view-pending'>69</button>
+        <button class='contribute'><span class="material-icons">create</span></button>
+        <button class='lock-story'>
+          <span class="material-icons">done_all</span>
+        </button>
+      </aside>
+    </main>
 
-  <footer>
-    <p class='tags'>tags tags tags</p>
-    <div class='state'>
-      <div>${created}</div>
-      <div>|</div>
-      <div>${completed}</div>
-      <div><a href=#>+ contribute</a></div>
-      <div><a href=#>view contributions</a></div>
-    </div>
-  </footer>
-<!-- END OF STORY -->
+    <footer>
+      <p class='tags'>tags tags tags</p>
+      <div class='state'>
+        <div>${created}</div>
+        <div>|</div>
+        <div>${completed}</div>
+        <div><a href=#>+ contribute</a></div>
+        <div><a href=#>view contributions</a></div>
+      </div>
+    </footer>
+  <!-- END OF STORY -->
 </article>
 `
 );

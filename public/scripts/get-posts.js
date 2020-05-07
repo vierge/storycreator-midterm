@@ -69,6 +69,7 @@ const getPosts = async function(obj) {
     snippets.date_accepted AS snippet_accepted_date,
     users2.username AS snippet_author,
     stories.content_tags AS tags
+    snippets.story_id AS thread_id
     FROM snippets
     JOIN stories ON story_id = stories.id
     JOIN users AS users1 ON owner_id = users1.id
