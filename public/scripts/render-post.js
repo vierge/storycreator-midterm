@@ -13,7 +13,8 @@ const createPendingPost = function (data, target) { // takes a json object that 
   const author = data.snippet_author;
   const text = data.content;
   // remember upvotes!!!!
-  const footer = data.date_submitted;
+  const footer = new Date(data.date_submitted);
+  const upvotes = data.upvotes;
 
   $(target).prepend(`
   <article class='snippet pending'>
@@ -28,7 +29,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
         <button class='upvote'>
           <span class="material-icons">keyboard_arrow_up</span>
         </button>
-        <span>45</span>
+        <span>${upvotes}</span>
         <button class='accept'>
           <span class="material-icons">done</span>
         </button>
@@ -47,17 +48,21 @@ const createAcceptedPost = function (data, target) {
   const author = data.snippet_author;
   const text = data.content;
   const thread = data.thread_id;
+  const updated = new Date(data.snippet_accepted_date);
+  const upvotes = data.upvotes;
+
   // UPVOTES o.o
 
   $(`${target} #${thread}`).append(`
   <section class='snippet accepted'>
     <header class='meta-data'>
       <a class='snippet_contributor' href=#>@${author}</a>
-      <div class='snippet-upvotes'>(45)</div>
+      <div class='snippet-upvotes'>(${upvotes})</div>
     </header>
     <p>${text}</p>
   </section>
   `);
+  $(`${target} #${thread}-last-updated`).text(`last updated: ${updated}`);
   return;
 }
 
@@ -68,9 +73,12 @@ const createThread = (data, target) => {
   const name = data.story;
   const owner = data.story_owner;
   const initialText = data.content;
-  const created = data.born_on;
-  const completed = data.completed_on;
-
+  const created = new Date(data.born_on);
+  const completed = new Date (data.completed_on);
+  let tags = '';
+  data.tags.forEach(element => {
+    tags = tags + `<a href=#> . ${element} . </a>`
+  });
   console.log("TARGET", $(target));
 
   $(target).prepend(`
@@ -87,7 +95,7 @@ const createThread = (data, target) => {
         <section class='snippet initial'>
           <p>${initialText}</p>
         </section>
-
+      </article>
       <aside>
         <button class='view-pending'>69</button>
         <button class='contribute'><span class="material-icons">create</span></button>
@@ -98,11 +106,11 @@ const createThread = (data, target) => {
     </main>
 
     <footer>
-      <p class='tags'>tags tags tags</p>
+      <p class='tags'> . ${tags} . </p>
       <div class='state'>
         <div>${created}</div>
         <div>|</div>
-        <div>${completed}</div>
+        <div id="${thread}-last-updated">last updated: ${completed ? completed : created}</div>
         <div><a href=#>+ contribute</a></div>
         <div><a href=#>view contributions</a></div>
       </div>

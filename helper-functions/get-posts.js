@@ -68,6 +68,7 @@ const getPosts = async function(obj) {
     snippets.date_created AS date_submitted,
     snippets.date_accepted AS snippet_accepted_date,
     users2.username AS snippet_author,
+    snippets.vote_count AS upvotes,
     stories.content_tags AS tags,
     snippets.story_id AS thread_id
     FROM snippets
