@@ -19,6 +19,7 @@ $(() => {
     $.post(`/stories/${storyID}`, {snippetText})
     .then((data) => {
       // ARRAY WITH OBJ - NEW SNIPPET RETURNED
+      // createPendingPost(data, '.secondary-container')
       console.log(data);
     })
 
