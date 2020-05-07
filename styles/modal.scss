@@ -1,8 +1,29 @@
+.modal {
+  position: fixed;
+  z-index: 97;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #E7E8E8;
+  height: 50vh;
+  width: 75vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal-overlay {
+  position: fixed;
+  z-index: 95;
+  top: 0;
+  left: 0;
+
   background-color: #9B51E0;
   opacity: 50%;
-  // display: fixed;
   height: 100vh;
   width: 100vw;
-  z-index: 98;
 }
+
