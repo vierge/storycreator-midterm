@@ -8,7 +8,7 @@ module.exports = (db) => {
       db: db,
       flag: req.query.flag,
       userid: req.query.userid,
-      story: req.query.storyid
+      storyid: req.query.storyid
     }
     // console.log(req.query.info);
     console.log('this is where we at!');

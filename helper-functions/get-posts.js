@@ -32,7 +32,7 @@
 
 const getPosts = async function(obj) {
 
-  const { db, userid, date, flag, target } = obj;
+  const { db, userid, storyid, date, flag } = obj;
   let conditionLeft = ''; //left column
   let conditionRight = ''; //right column
 
@@ -46,12 +46,12 @@ const getPosts = async function(obj) {
       conditionRight = `WHERE user_id = ${userid} AND snippets.date_accepted IS NULL`;
       break;
     case 'story': // search for stories with a name like.....
-      conditionLeft = `WHERE stories.name LIKE '%${target}%' AND snippets.date_accepted IS NOT NULL`;
-      conditionRight = `WHERE stories.name LIKE '%${target}%' AND snippets.date_accepted IS NULL
+      conditionLeft = `WHERE snippets.story_id = ${storyid} AND snippets.date_accepted IS NOT NULL`;
+      conditionRight = `WHERE snippets.story_id = ${storyid} AND snippets.date_accepted IS NULL
                         AND snippets.date_created >= (
                           SELECT snippets.date_accepted FROM snippets
                           JOIN stories ON story_id = stories.id
-                          WHERE stories.name LIKE '%${target}%'
+                          WHERE snippets.story_id = ${storyid}
                           ORDER BY snippets.date_accepted DESC NULLS LAST
                           LIMIT 1
                           )`;
