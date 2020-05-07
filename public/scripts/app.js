@@ -1,12 +1,20 @@
+$(() => {
 
+  $.ajax({
+    method: "GET",
+    url: "/api/database?info=home",
+    success: (response) => {
+      console.log(response.left);
+      console.log(response.right);
+      console.log('this is where we need to be!');
+      renderPosts(response.left, 'left');
+      renderPosts(response.right, 'right');
+      console.log("CAST MAGIC");
+    }
+  })
+});
 
-function createPost (data) { // takes a json object that is an array of post information
-  const escape =  function(str) {
-    let div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  };
-  const storyHeader = { title: data.story, owner: data.story_owner };
+const createPendingPost = function (data) { // takes a json object that is an array of post information
   const author = data.snippet_author;
   const text = data.content;
   // remember upvotes!!!!
@@ -36,32 +44,82 @@ function createPost (data) { // takes a json object that is an array of post inf
     </footer>
   </article>
   `
-}
-
-// function renderPosts(postArray) {
-
-// }
-
-const renderPosts = (postArray) => {
-  for (const post of postArray) {
-    $('.secondary-container').prepend(createPost(post));
   }
+
+  const createAcceptedPost = function (data) {
+    const author = data.snippet_author;
+    const text = data.content;
+    // UPVOTES o.o
+    return `
+    <section class='snippet accepted'>
+      <header class='meta-data'>
+        <a class='snippet_contributor' href=#>@${author}</a>
+        <div class='snippet-upvotes'>(45)</div>
+      </header>
+      <p>${text}</p>
+    </section>
+    `
+  }
+
+const renderPosts = (postArray, side) => {
+  // post.date_accepted ? createAcceptedPost(post) : createPendingPost(post)
+  if (side === 'left') {
+    for (const post of postArray) {
+      $('.primary-container').prepend(post.snippet_accepted_date ? createAcceptedPost(post) : createPendingPost(post));
+    }
+  } else if (side === 'right') {
+    for (const post of postArray) {
+      $('.secondary-container').prepend(post.snippet_accepted_date ? createAcceptedPost(post) : createPendingPost(post));
+    }
+  } else {
+    console.log("git blame yourself or god");
+  }
+
 };
 
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/database?info=home",
-    success: (response) => {
-      console.log(response.left);
-      console.log(response.right);
-      console.log('this is where we need to be!');
+const createStory = (data) => {
 
-      renderPosts(response.right);
-      console.log("CAST MAGIC");
-    }
-  })
-});
+
+
+
+  return `
+  <!-- STORY -->
+  <article class='story'>
+    <header>
+      <a href=#><h1 class='story-title'>story_name</h1></a>
+      <a class='story-owner' href=# >@owner_username</a>
+    </header>
+
+    <main>
+      <article class='snippets-container'>
+
+        <section class='snippet initial'>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis architecto minima nostrum corporis vitae asperiores, qui sed sunt molestiae totam et animi, rerum provident cupiditate voluptatum omnis neque reiciendis delectus.</p>
+        </section>
+
+      <aside>
+        <button class='view-pending'>69</button>
+        <button class='contribute'><span class="material-icons">create</span></button>
+        <button class='lock-story'>
+          <span class="material-icons">done_all</span>
+        </button>
+      </aside>
+    </main>
+
+    <footer>
+      <p class='tags'>tags tags tags</p>
+      <div class='state'>
+        <div>date_created</div>
+        <div>|</div>
+        <div>last_updated</div>
+        <div><a href=#>+ contribute</a></div>
+        <div><a href=#>view contributions</a></div>
+      </div>
+    </footer>
+<!-- END OF STORY -->
+  </article>
+  `
+}
 
 // 0: {
 // born_on: "2020-05-01T00:00:00.000Z"
@@ -130,3 +188,10 @@ $(() => {
 //   </footer>
 // <!-- END OF STORY -->
 // </article>
+
+
+const escape = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
