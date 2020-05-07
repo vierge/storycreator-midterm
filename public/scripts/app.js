@@ -2,7 +2,7 @@ $(() => {
 
   $.ajax({
     method: "GET",
-    url: "/api/database?flag=user&userid=1&storyid=1",
+    url: "/api/database?flag=home",
     success: (response) => {
       console.log(response.left);
       console.log(response.right);
