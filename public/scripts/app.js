@@ -16,12 +16,13 @@ $(() => {
 
 const renderPosts = (postArray, target) => {
   for (const post of postArray) {
-      if (post.date_created === post.date_accepted) {
+      if (post.date_submitted === post.snippet_accepted_date) {
         createThread(post, target)
       } else {
-      post.date_accepted ? createAcceptedPost(post, target) : createPendingPost(post, target);
+      post.snippet_accepted_date ? createAcceptedPost(post, target) : createPendingPost(post, target);
     }
   }
+  return true;
 }
 
 const createPendingPost = function (data, target) { // takes a json object that is an array of post information
@@ -30,7 +31,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
   // remember upvotes!!!!
   const footer = data.date_submitted;
 
-  return $(target).prepend(`
+  $(target).prepend(`
   <article class='snippet pending'>
     <header>
       <a class='snippet_contributor' href=#>${author}</a>
@@ -54,15 +55,17 @@ const createPendingPost = function (data, target) { // takes a json object that 
     </footer>
   </article>
   `);
+  return;
 }
 
 const createAcceptedPost = function (data, target) {
+  console.log(`adding to ${data.story} thread at id ${data.thread_id}`)
   const author = data.snippet_author;
   const text = data.content;
   const thread = data.thread_id;
   // UPVOTES o.o
 
-  return $(`${target} #${thread} main`).append(`
+  $(`${target} #${thread}`).append(`
   <section class='snippet accepted'>
     <header class='meta-data'>
       <a class='snippet_contributor' href=#>@${author}</a>
@@ -71,20 +74,22 @@ const createAcceptedPost = function (data, target) {
     <p>${text}</p>
   </section>
   `);
-
-
+  return;
 }
 
 const createThread = (data, target) => {
+  console.log(`creating thread for ${data.story}`);
 
   const thread = data.thread_id;
-  const name = data.name;
+  const name = data.story;
   const owner = data.story_owner;
-  const initialText = data.contents;
+  const initialText = data.content;
   const created = data.born_on;
   const completed = data.completed_on;
 
-  return $(target).prepend(`
+  console.log("TARGET", $(target));
+
+  $(target).prepend(`
   <!-- STORY -->
   <article class='story'>
     <header>
@@ -93,7 +98,7 @@ const createThread = (data, target) => {
     </header>
 
     <main>
-      <article class='snippets-container' id=${thread}>
+      <article class='snippets-container' id='${thread}'>
 
         <section class='snippet initial'>
           <p>${initialText}</p>
@@ -122,6 +127,7 @@ const createThread = (data, target) => {
 </article>
 `
 );
+return;
 }
 
 
