@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/render-post.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
@@ -48,7 +49,7 @@
       <section class='primary-container'>
 
     <!-- STORY -->
-        <article class='story'>
+        <!-- <article class='story'>
           <header>
             <a href=#><h1 class='story-title'>story_name</h1></a>
             <a class='story-owner' href=# >@owner_username</a>
@@ -99,7 +100,7 @@
               <div><a href=#>+ contribute</a></div>
               <div><a href=#>view contributions</a></div>
             </div>
-          </footer>
+          </footer> -->
       <!-- END OF STORY -->
         </article>
 
@@ -137,6 +138,14 @@
 
     <!-- END OF RIGHT (secondary) FEED -->
       </section>
+<<<<<<< HEAD
+<!--
+      <div class="modal">
+        <form method='POST' action='INSERT ROUTE HERE'></form>
+          <label for="write-snippet">Write a contribution!</label> -->
+          <!-- where does snippet ID go? better place to catch on submit -->
+          <!-- <div hidden>snippet_id</div>
+=======
 
     <!-- MODALS: use CLASS 'modal-active' to unhide -->
 
@@ -145,11 +154,15 @@
           <label for="write-snippet">Write a contribution!</label>
           <!-- where does story ID go? better place to catch on submit -->
           <div hidden class='story-id'></div>
+>>>>>>> b6535a70e06e0eac55390388e2bab5bd668f23f9
           <textarea name="text" class="write-snippet"></textarea>
           <button type="submit" class='send-contribution'>contribute</button>
         </form>
       </div>
 
+<<<<<<< HEAD
+      <div class='modal-overlay'></div> -->
+=======
       <div hidden class="" id='modal-write-story'>
         <form method='POST' action='INSERT ROUTE HERE'></form>
           <label for="write-story">Start a story!</label>
@@ -162,6 +175,7 @@
 
     <!-- remove hidden when any MODAL active -->
       <div hidden class='modal-overlay'></div>
+>>>>>>> b6535a70e06e0eac55390388e2bab5bd668f23f9
 
   <!-- END OF FEEDS CONTAINER -->
     </main>

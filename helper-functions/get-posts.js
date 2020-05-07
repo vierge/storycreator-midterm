@@ -32,26 +32,26 @@
 
 const getPosts = async function(obj) {
 
-  const { db, user, date, flag } = obj;
+  const { db, userid, date, flag, target } = obj;
   let conditionLeft = ''; //left column
   let conditionRight = ''; //right column
 
     switch(flag){
     case 'home': // first view: pull all complete and incomplete stories
-      conditionLeft = `WHERE stories.date_completed IS NULL`;       // incomplete left
-      conditionRight = `WHERE stories.date_completed IS NOT NULL`;  // complete right
+      conditionLeft = `WHERE stories.date_completed IS NULL AND snippets.date_accepted IS NOT NULL`;       // incomplete left
+      conditionRight = `WHERE stories.date_completed IS NOT NULL AND snippets.date_accepted IS NOT NULL`;  // complete right
       break;
-    case 'userSnippets': // TBC: user snippets view: pls define a user
-      conditionLeft = `WHERE snippets.date_accepted IS NOT NULL`;
-      conditionRight = `WHERE snippets.date_accepted IS NULL`;
+    case 'user': // TBC: user snippets view: pls define a user
+      conditionLeft = `WHERE user_id = ${userid} OR stories.owner_id = ${userid} AND snippets.date_accepted IS NOT NULL`;
+      conditionRight = `WHERE user_id = ${userid} AND snippets.date_accepted IS NULL`;
       break;
     case 'story': // search for stories with a name like.....
-      conditionLeft = `WHERE stories.name LIKE '%May%' AND snippets.date_accepted IS NOT NULL`;
-      conditionRight = `WHERE stories.name LIKE '%May%' AND snippets.date_accepted IS NULL
+      conditionLeft = `WHERE stories.name LIKE '%${target}%' AND snippets.date_accepted IS NOT NULL`;
+      conditionRight = `WHERE stories.name LIKE '%${target}%' AND snippets.date_accepted IS NULL
                         AND snippets.date_created >= (
                           SELECT snippets.date_accepted FROM snippets
                           JOIN stories ON story_id = stories.id
-                          WHERE stories.name LIKE '%May%'
+                          WHERE stories.name LIKE '%${target}%'
                           ORDER BY snippets.date_accepted DESC NULLS LAST
                           LIMIT 1
                           )`;
@@ -68,7 +68,8 @@ const getPosts = async function(obj) {
     snippets.date_created AS date_submitted,
     snippets.date_accepted AS snippet_accepted_date,
     users2.username AS snippet_author,
-    stories.content_tags AS tags
+    snippets.vote_count AS upvotes,
+    stories.content_tags AS tags,
     snippets.story_id AS thread_id
     FROM snippets
     JOIN stories ON story_id = stories.id
