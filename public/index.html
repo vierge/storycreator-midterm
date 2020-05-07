@@ -140,16 +140,16 @@
 
       <div class="modal">
         <form method='POST' action='INSERT ROUTE HERE'></form>
-          <label for="">What are you humming about?</label>
-          <!-- where does snippet ID go? -->
+          <label for="write-snippet">Write a contribution!</label>
+          <!-- where does snippet ID go? better place to catch on submit -->
+          <div hidden>snippet_id</div>
           <textarea name="text" class="write-snippet"></textarea>
-          <footer>
-            <button type="submit">contribute</button>
-          </footer>
+          <button type="submit" class='send-contribution'>contribute</button>
         </form>
       </div>
 
       <div class='modal-overlay'></div>
+
   <!-- END OF FEEDS CONTAINER -->
     </main>
   </body>

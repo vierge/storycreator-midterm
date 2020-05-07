@@ -8,11 +8,18 @@
 
   background-color: #E7E8E8;
   height: 50vh;
-  width: 75vh;
+  width: 75vw;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  padding: 2vh;
+}
+
+.write-snippet {
+  height: 50%;
+  margin: 2vh 0;
 }
 
 .modal-overlay {
@@ -25,5 +32,14 @@
   opacity: 50%;
   height: 100vh;
   width: 100vw;
+}
+
+.send-contribution {
+  background-color: #7ABF43;
+  color: white;
+  border-radius: 5px;
+  height: 50px;
+  width: 120px;
+  align-self: center;
 }
 
