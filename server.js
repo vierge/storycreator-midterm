@@ -10,6 +10,10 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 
+// custom function imports
+
+// const getPosts = require('./public/scripts/get-posts.js')
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -36,12 +40,13 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const databaseRoutes = require("./routes/database");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+// app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/database", databaseRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -50,7 +55,9 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 // DEACTIVATED RENDER EJS
 // app.get("/", (req, res) => {
-//   res.render("index");
+//   // res.render("index");
+//   // console.log("this is the res:");
+//   // console.log(res);
 // });
 
 app.listen(PORT, () => {
