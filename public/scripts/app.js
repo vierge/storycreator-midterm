@@ -62,19 +62,20 @@ const createPendingPost = function (data) { // takes a json object that is an ar
   }
 
 const renderPosts = (postArray, side, method) => {
-  // post.date_accepted ? createAcceptedPost(post) : createPendingPost(post)
-  if (side === 'left') {
-    for (const post of postArray) {
-      $('.primary-container').prepend(method(post));
-    }
-  } else if (side === 'right') {
-    for (const post of postArray) {
-      $('.secondary-container').prepend(method(post));
-    }
-  } else {
-    console.log("git blame yourself or god");
+  let target; // determine column with side variable
+  switch(side) {
+    case('l'):
+      target = '.primary-container'
+      break;
+    case('r'):
+      target = '.secondary-container'
+      break;
+    default: console.log('git blame yourself or god');
   }
-
+  for (const post of postArray) {
+    $(target).prepend(method(post));  // prepend to target container
+  // to do: if a post is the first in a story, create story container and switch target to that container
+  // then change DOM method to append
 };
 
 const createStory = (data) => {
