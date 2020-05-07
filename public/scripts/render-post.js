@@ -1,3 +1,10 @@
+// WELCOME TO THE POST RENDERERS!
+// renderPosts() takes an array of posts and a target column,
+// parses each post for relevant data and passes the post and target to
+// createThread(), createAcceptedPost(), or createPendingPost() !
+//
+// the create$() functions handle the actual rendering, so they can be used independently to make posts!
+
 const renderPosts = (postArray, target) => {
   for (const post of postArray) {
       if (post.date_submitted === post.snippet_accepted_date) {
@@ -98,7 +105,7 @@ const createThread = (data, target) => {
       </article>
       <aside>
         <button class='view-pending'>69</button>
-        <button class='contribute'><span class="material-icons">create</span></button>
+        <button class='contribute' id="post-to-${thread}"><span class="material-icons">create</span></button>
         <button class='lock-story'>
           <span class="material-icons">done_all</span>
         </button>
