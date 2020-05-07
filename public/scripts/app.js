@@ -61,15 +61,15 @@ const createPendingPost = function (data) { // takes a json object that is an ar
     `
   }
 
-const renderPosts = (postArray, side) => {
+const renderPosts = (postArray, side, method) => {
   // post.date_accepted ? createAcceptedPost(post) : createPendingPost(post)
   if (side === 'left') {
     for (const post of postArray) {
-      $('.primary-container').prepend(post.snippet_accepted_date ? createAcceptedPost(post) : createPendingPost(post));
+      $('.primary-container').prepend(method(post));
     }
   } else if (side === 'right') {
     for (const post of postArray) {
-      $('.secondary-container').prepend(post.snippet_accepted_date ? createAcceptedPost(post) : createPendingPost(post));
+      $('.secondary-container').prepend(method(post));
     }
   } else {
     console.log("git blame yourself or god");
