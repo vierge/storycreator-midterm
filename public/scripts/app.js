@@ -14,13 +14,23 @@ $(() => {
   })
 });
 
-const createPendingPost = function (data) { // takes a json object that is an array of post information
+const renderPosts = (postArray, target) => {
+  for (const post of postArray) {
+      if (post.date_created === post.date_accepted) {
+        createThread(post, target)
+      } else {
+      post.date_accepted ? createAcceptedPost(post, target) : createPendingPost(post, target);
+    }
+  }
+}
+
+const createPendingPost = function (data, target) { // takes a json object that is an array of post information
   const author = data.snippet_author;
   const text = data.content;
   // remember upvotes!!!!
   const footer = data.date_submitted;
 
-  return `
+  return $(target).prepend(`
   <article class='snippet pending'>
     <header>
       <a class='snippet_contributor' href=#>${author}</a>
@@ -43,83 +53,75 @@ const createPendingPost = function (data) { // takes a json object that is an ar
       <span>${footer}</span>
     </footer>
   </article>
-  `
-  }
+  `);
+}
 
-  const createAcceptedPost = function (data) {
-    const author = data.snippet_author;
-    const text = data.content;
-    // UPVOTES o.o
-    return `
-    <section class='snippet accepted'>
-      <header class='meta-data'>
-        <a class='snippet_contributor' href=#>@${author}</a>
-        <div class='snippet-upvotes'>(45)</div>
-      </header>
-      <p>${text}</p>
-    </section>
-    `
-  }
+const createAcceptedPost = function (data, target) {
+  const author = data.snippet_author;
+  const text = data.content;
+  const thread = data.story_id;
+  // UPVOTES o.o
 
-const renderPosts = (postArray, side, method) => {
-  let target; // determine column with side variable
-  switch(side) {
-    case('l'):
-      target = '.primary-container'
-      break;
-    case('r'):
-      target = '.secondary-container'
-      break;
-    default: console.log('git blame yourself or god');
-  }
-  for (const post of postArray) {
-    $(target).prepend(method(post));  // prepend to target container
-  // to do: if a post is the first in a story, create story container and switch target to that container
-  // then change DOM method to append
-};
-
-const createStory = (data) => {
+  return $(`${target} #${thread} main`).append(`
+  <section class='snippet accepted'>
+    <header class='meta-data'>
+      <a class='snippet_contributor' href=#>@${author}</a>
+      <div class='snippet-upvotes'>(45)</div>
+    </header>
+    <p>${text}</p>
+  </section>
+  `);
 
 
+}
 
+const createThread = (data, target) => {
 
-  return `
+  const thread = data.story_id;
+  const name = data.name;
+  const owner = data.story_owner;
+  const initialText = data.contents;
+  const created = data.born_on;
+  const completed = data.completed_on;
+
+  return $(target).prepend(`
   <!-- STORY -->
   <article class='story'>
-    <header>
-      <a href=#><h1 class='story-title'>story_name</h1></a>
-      <a class='story-owner' href=# >@owner_username</a>
-    </header>
+  <header>
+    <a href=#><h1 class='story-title'>${name}</h1></a>
+    <a class='story-owner' href=# >@${owner}</a>
+  </header>
 
-    <main>
-      <article class='snippets-container'>
+  <main>
+    <article class='snippets-container' id=${thread}>
 
-        <section class='snippet initial'>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis architecto minima nostrum corporis vitae asperiores, qui sed sunt molestiae totam et animi, rerum provident cupiditate voluptatum omnis neque reiciendis delectus.</p>
-        </section>
+      <section class='snippet initial'>
+        <p>${initialText}</p>
+      </section>
 
-      <aside>
-        <button class='view-pending'>69</button>
-        <button class='contribute'><span class="material-icons">create</span></button>
-        <button class='lock-story'>
-          <span class="material-icons">done_all</span>
-        </button>
-      </aside>
-    </main>
+    <aside>
+      <button class='view-pending'>69</button>
+      <button class='contribute'><span class="material-icons">create</span></button>
+      <button class='lock-story'>
+        <span class="material-icons">done_all</span>
+      </button>
+    </aside>
+  </main>
 
-    <footer>
-      <p class='tags'>tags tags tags</p>
-      <div class='state'>
-        <div>date_created</div>
-        <div>|</div>
-        <div>last_updated</div>
-        <div><a href=#>+ contribute</a></div>
-        <div><a href=#>view contributions</a></div>
-      </div>
-    </footer>
+  <footer>
+    <p class='tags'>tags tags tags</p>
+    <div class='state'>
+      <div>${created}</div>
+      <div>|</div>
+      <div>${completed}</div>
+      <div><a href=#>+ contribute</a></div>
+      <div><a href=#>view contributions</a></div>
+    </div>
+  </footer>
 <!-- END OF STORY -->
-  </article>
-  `
+</article>
+`
+);
 }
 
 // 0: {
@@ -191,8 +193,3 @@ const createStory = (data) => {
 // </article>
 
 
-const escape = function (str) {
-  let div = document.createElement('div');
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
