@@ -28,7 +28,7 @@
         <button disabled>My Stories</button>
         <button disabled>My Contributions</button>
         <button disabled>Favourites</button>
-        <button class='create-new-story'>+ New (TESTING SNIPPET)</button>
+        <button class='create-new-story'>+ New (TESTING STORY)</button>
         <button disabled>Search</button>
       </div>
       <div>
@@ -156,11 +156,12 @@
       <div hidden class="" id='modal-write-story'>
         <form method='POST' action='INSERT ROUTE HERE'>
           <label for="write-story">Start a story!</label>
-          <input name='storyTitle' placeholder='Title'>
-          <textarea name="storyText" class="write-snippet" placeholder='Story Text'></textarea>
-          <input placeholder='Tags'>
+          <input name='storyTitle' placeholder='Title' id='story-title'>
+          <textarea name="storyText" placeholder='Story Text' id='story-text'></textarea>
+          <input placeholder='Tags' id="story-tags">
           <button type="submit" class='send-contribution'>contribute</button>
         </form>
+        <button class='close-modal'>cancel</button>
       </div>
 
     <!-- remove hidden when any MODAL active -->

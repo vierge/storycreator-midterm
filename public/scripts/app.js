@@ -13,11 +13,16 @@ $(() => {
     }
   })
 
-    // TESTING NEW SNIPPET, will have to make .create-new-snippet listener
-    $('.create-new-story').on('click', function() {
+    // TO DO: .create-new-snippet BUTTON AND listener
+    $('.create-new-snippet').on('click', function() {
       $('.modal-overlay').show();
       $('#modal-write-snippet').addClass('modal-active');
+
+      $('.close-modal').on('click', function() {
+        $('.modal-overlay').hide();
+        $('#modal-write-snippet').removeClass('modal-active');
       })
+    })
 
     const $newSnippet = $('#modal-write-snippet form');
 
@@ -33,7 +38,6 @@ $(() => {
       .then((data) => {
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
-
         createPendingPost(data, '.secondary-container');
       })
 
