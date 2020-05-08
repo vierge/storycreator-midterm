@@ -22,10 +22,9 @@ const createPendingPost = function (data, target) { // takes a json object that 
   // remember upvotes!!!!
   const footer = new Date(data.date_submitted);
   const upvotes = data.upvotes;
-  const thread = data.story_id;
 
   $(target).prepend(`
-  <article class='snippet pending' id="pending-thread-${thread}">
+  <article class='snippet pending'>
     <header>
       <a class='snippet_contributor' href=#>${author}</a>
     </header>

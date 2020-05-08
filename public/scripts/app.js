@@ -17,7 +17,7 @@ $(() => {
 
   $('.login').click(function(){
     console.log('clickie');
-    $.get("/api/login/")
+    $.get("/api/login/ariane")
     .done(res => {
       currentUser = res;
       $('.login').text(currentUser.username);

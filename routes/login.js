@@ -3,8 +3,9 @@ const router = express.Router();
 
 
 module.exports = (db) => {
-  router.get("/:id", (req, res) => { // route is /login/user's name
-    db.query(`SELECT * FROM users WHERE username = ${req.params.id}`) // queries db for a matching username
+  router.get("/:id", (req, res) => {
+    console.log(req.params.id); // route is /login/user's name
+    db.query(`SELECT * FROM users WHERE username = '${req.params.id}'`) // queries db for a matching username
     .then(data => {
       console.log(data);
       if (data.rows[0]) { // if there was a match
