@@ -1,22 +1,26 @@
 let currentUser;
 let thisStoryID;
+
+
+const dbCall = function (options) {
+    console.log(options);
+      $.ajax({
+        method: "GET",
+        url: `/api/database?${options}`,
+        success: (response) => {
+          $('.feed-container').children().empty();
+          console.log('this is where we need to be!');
+          renderPosts(response.left, '.primary-container');
+          renderPosts(response.right, '.secondary-container');
+          console.log("CAST MAGIC");
+        }
+      })
+  }
+
+
 $(() => {
 
-
-  $.ajax({
-    method: "GET",
-    url: "/api/database?flag=story&storyid=1",
-    success: (response) => {
-      console.log(response.left);
-      console.log(response.right);
-      console.log('this is where we need to be!');
-      renderPosts(response.left, '.primary-container');
-      renderPosts(response.right, '.secondary-container');
-      console.log("CAST MAGIC");
-    }
-  })
-
-  // TO DO: .create-new-snippet BUTTON AND listener
+  dbCall('flag=home');
 
 
   const $newSnippet = $('#modal-write-snippet form');

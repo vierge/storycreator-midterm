@@ -92,7 +92,7 @@ const createThread = (data, target) => {
   <!-- STORY -->
   <article class='story'>
     <header>
-      <a href=#><h1 class='story-title'>${name}</h1></a>
+      <a href=#><h1 class='story-title view-story'>${name}</h1></a>
       <a class='story-owner' href=# >@${owner}</a>
     </header>
 
@@ -120,7 +120,7 @@ const createThread = (data, target) => {
         <div>|</div>
         <div id="${thread}-last-updated">last updated: ${completed ? completed : created}</div>
         <div><a href=#>+ contribute</a></div>
-        <div><a href=#>view contributions</a></div>
+        <div><button class="view-story">view contributions</a></div>
       </div>
     </footer>
   <!-- END OF STORY -->
@@ -139,6 +139,13 @@ $(`.create-new-snippet`).on('click', function () {
     $('#modal-write-snippet').removeClass('modal-active');
   })
 })
+$(`.view-story`).on('click', function(event) {
+  console.log('click');
+  // thisStoryID = thread; // just in case
+  dbCall(`flag=story&storyid=${thread}`).then(res => {return});
+  // thisStoryID = 0; // also just in case
+  return;
+});
 return;
 }
 

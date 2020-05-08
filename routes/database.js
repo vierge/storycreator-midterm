@@ -16,6 +16,8 @@ module.exports = (db) => {
     .then(data => {
       const left = data[0].rows;
       const right = data[1].rows;
+      console.log(left);
+      console.log(right);
       res.json({ left, right });
     });
   });
