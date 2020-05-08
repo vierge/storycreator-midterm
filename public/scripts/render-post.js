@@ -127,26 +127,14 @@ const createThread = (data, target) => {
 </article>
 `
 );
-<<<<<<< HEAD
-
-$('.create-new-snippet').on('click', function() {
-  console.log('ow!');
-  $('.modal-overlay').show();
-  $('#modal-write-snippet').addClass('modal-active');
-  $(`#modal-write-snippet form`).data('thread', `${thread}`);
-
-  // const { thread } = $(this).data();
-  // storyID = thread;
-  $('.close-modal').on('click', function() {
-=======
-$(`.create-new-snippet #post-to-${thread}`).on('click', function () {
+$(`.create-new-snippet`).on('click', function () {
+  if(!currentUser.id) {return}  // #post-to-${thread} ????
   thisStoryID = thread;
   $('.modal-overlay').show();
   $('#modal-write-snippet').addClass('modal-active');
 
   $('.close-modal').on('click', function () {
     thisStoryID = 0;
->>>>>>> mara-safety-branch
     $('.modal-overlay').hide();
     $('#modal-write-snippet').removeClass('modal-active');
   })
