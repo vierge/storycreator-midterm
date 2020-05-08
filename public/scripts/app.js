@@ -1,6 +1,6 @@
 let currentUser;
 let thisStoryID;
-
+let thisPostID;
 
 const dbCall = function (options) {
     console.log(options);
@@ -8,7 +8,8 @@ const dbCall = function (options) {
         method: "GET",
         url: `/api/database?${options}`,
         success: (response) => {
-          $('.feed-container').children().empty();
+          $('.primary-container').empty();
+          $('.secondary-container').empty();
           console.log('this is where we need to be!');
           renderPosts(response.left, '.primary-container');
           renderPosts(response.right, '.secondary-container');
@@ -103,9 +104,7 @@ $newStory.submit(function (event) {
 
 $('.logo').on('click', () => {
   dbCall('flag=home').then(() => {return});
-}
-
-
+});
 
 $('.login').click(function () {
   console.log('clickie');

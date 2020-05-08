@@ -60,7 +60,8 @@ const getPosts = async function(obj) {
   };
 
   const grab = function (condition) {
-    return `SELECT users1.username AS story_owner,
+    return `SELECT snippets.id AS post_id,
+    users1.username AS story_owner,
     stories.name AS story,
     stories.date_created AS born_on,
     stories.date_completed AS completed_on,

@@ -21,6 +21,14 @@ module.exports = (db) => {
 
   });
 
+  // upvotes route
+  router.post("/vote/:id", function (req, res) {
+    console.log("we made it");
+    db.query('UPDATE snippets SET vote_count = vote_count + 1 WHERE id = $1 RETURNING *;', [req.params.id])
+    .then((data) => {
+      res.send(data.rows.vote_count);
+    })
+  });
 
     // get title, tags (from form) query DB INSERT to stories table returning story id
     // .then query db second time with snippet text from form INSERT

@@ -21,7 +21,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
   const text = data.content;
   // remember upvotes!!!!
   const footer = new Date(data.date_submitted);
-  const upvotes = data.upvotes ? data.upvotes : 0;
+  let upvotes = data.upvotes ? data.upvotes : 0;
 
   $(target).prepend(`
   <article class='snippet pending'>
@@ -47,7 +47,13 @@ const createPendingPost = function (data, target) { // takes a json object that 
     </footer>
   </article>
   `);
-
+  $(`.upvote`).click(function(event) {
+    upvotes++;
+    console.log("click");
+    $.post(`/stories/vote/${data.post_id}`).then(res => {return})
+    $(this).next().empty().text(`VOTTTTTTEEE: ${upvotes}`);
+    event.preventDefault();
+  })
   return;
 }
 
