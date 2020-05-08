@@ -22,7 +22,6 @@ $(() => {
 
   dbCall('flag=home');
 
-
   const $newSnippet = $('#modal-write-snippet form');
 
   $newSnippet.submit(function (event) {
@@ -101,6 +100,10 @@ $newStory.submit(function (event) {
   event.preventDefault();
 
 })
+
+$('.logo').on('click', () => {
+  dbCall('flag=home').then(() => {return});
+}
 
 
 
