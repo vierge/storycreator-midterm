@@ -26,7 +26,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
   $(target).prepend(`
   <article class='snippet pending'>
     <header>
-      <a class='snippet_contributor' href=#>${author}</a>
+      <a class='snippet_contributor' href=#>@${author}</a>
     </header>
     <main>
       <section>
@@ -54,7 +54,16 @@ const createPendingPost = function (data, target) { // takes a json object that 
     $(this).next().empty().text(`${upvotes}`);
     event.preventDefault();
   })
-  return;
+  $(`.accept`).click(function(event) {
+    console.log(`${currentUser.username}, ${data.story_owner}`);
+    if(currentUser.username != data.story_owner) {return;}
+    $.post(`/stories/accept/${data.post_id}`)
+    .then(() => {
+      console.log("story_accepted! thank you!");
+    }).then(() => {
+    dbCall(`flag=story&storyid=${data.thread_id}`)});
+    })
+    return;
 }
 
 const createAcceptedPost = function (data, target) {
@@ -99,7 +108,7 @@ const createThread = (data, target) => {
   <!-- STORY -->
   <article class='story'>
     <header>
-      <a href=#><h1 class='story-title view-story'>@${name}</h1></a>
+      <a href=#><h1 class='story-title view-story'>${name}</h1></a>
       <a class='story-owner' href=# >@${owner}</a>
     </header>
 
@@ -151,7 +160,8 @@ $(`.view-story`).on('click', function(event) {
   // thisStoryID = thread; // just in case
   dbCall(`flag=story&storyid=${thread}`).then(() => {return}); // investigate this
   // thisStoryID = 0; // also just in case
-});
+})
+$()
 return;
 }
 

@@ -61,6 +61,7 @@ const getPosts = async function(obj) {
 
   const grab = function (condition) {
     return `SELECT snippets.id AS post_id,
+    stories.owner_id AS owner_id,
     users1.username AS story_owner,
     stories.name AS story,
     stories.date_created AS born_on,
@@ -72,6 +73,7 @@ const getPosts = async function(obj) {
     snippets.vote_count AS upvotes,
     stories.content_tags AS tags,
     snippets.story_id AS thread_id
+
     FROM snippets
     JOIN stories ON story_id = stories.id
     JOIN users AS users1 ON owner_id = users1.id
