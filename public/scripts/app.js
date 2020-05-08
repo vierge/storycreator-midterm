@@ -1,6 +1,7 @@
 $(() => {
 
   let currentUser;
+  let thisStoryID;
 
   $.ajax({
     method: "GET",
@@ -15,6 +16,7 @@ $(() => {
     }
   })
 
+<<<<<<< HEAD
   // MY STORIES
 
   // $.ajax({
@@ -50,11 +52,25 @@ $(() => {
       $(this).removeData();
       console.log(`this should be thread: ${storyID}`);
       console.log(snippetText);
+=======
+  // TO DO: .create-new-snippet BUTTON AND listener
 
 
+  const $newSnippet = $('#modal-write-snippet form');
+>>>>>>> mara-safety-branch
+
+  $newSnippet.submit(function (event) {
+    const snippetText = $('#snippet-text').val();
+    console.log(snippetText);
+
+<<<<<<< HEAD
       // WE NEED THE STORY ID TO BE LOADED ON RENDER ***
       // AJAX REQUEST TO /stories/:id here for SNIPPET
       $.post(`/stories/${storyID}`, {snippetText})
+=======
+    // AJAX REQUEST TO /stories/:id here for SNIPPET
+    $.post(`/stories/${thisStoryID}`, { snippetText })
+>>>>>>> mara-safety-branch
       .then((data) => {
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
@@ -77,9 +93,10 @@ $(() => {
     // date_accepted: null,
     // contents: "Here's a story"
 
-      event.preventDefault();
-    });
+    event.preventDefault();
+  });
 
+<<<<<<< HEAD
     $('.create-new-story').on('click', function() {
       if(!currentUser.id) { return }
       $('.modal-overlay').show();
@@ -88,21 +105,40 @@ $(() => {
         $('.modal-overlay').hide();
         $('#modal-write-story').removeClass('modal-active');
       })
+=======
+  $('.create-new-story').on('click', function () {
+    $('.modal-overlay').show();
+    $('#modal-write-story').addClass('modal-active');
+    $('.close-modal').on('click', function () {
+      $('.modal-overlay').hide();
+      $('#modal-write-story').removeClass('modal-active');
+>>>>>>> mara-safety-branch
     })
+  })
 
-    const $newStory = $('#modal-write-story form');
+  const $newStory = $('#modal-write-story form');
 
+<<<<<<< HEAD
     $newStory.submit( function(event) {
       if(!currentUser.id) {return}
       const userID = currentUser.id;
       const storyTitle = $('#story-title').val();
       const storyText = $('#story-text').val();
+=======
+  $newStory.submit(function (event) {
+    const storyTitle = $('#story-title').val();
+    const storyText = $('#story-text').val();
+>>>>>>> mara-safety-branch
 
-      const tagString = $('#story-tags').val();
-      const storyTags = tagString.split(' ');
-      // console.log(storyTitle, storyText, storyTags);
+    const tagString = $('#story-tags').val();
+    const storyTags = tagString.split(' ');
+    // console.log(storyTitle, storyText, storyTags);
 
+<<<<<<< HEAD
       $.post(`/stories/`, { userID, storyTitle, storyText, storyTags})
+=======
+    $.post(`/stories/`, { storyTitle, storyText, storyTags })
+>>>>>>> mara-safety-branch
       .then((data) => {
         console.log(data);
         const post = {
@@ -116,16 +152,29 @@ $(() => {
         createThread(post, '.primary-container');
       })
 
+<<<<<<< HEAD
       event.preventDefault();
     })
 
     $('.login').click(function(){
       console.log('clickie');
       $.get("/api/login/ariane")
+=======
+    event.preventDefault();
+  })
+
+  $('.login').click(function () {
+    console.log('clickie');
+    $.get("/api/login/ariane")
+>>>>>>> mara-safety-branch
       .done(res => {
         currentUser = res;
         $('.login').text(currentUser.username);
       })
+<<<<<<< HEAD
     })
+=======
+  })
+>>>>>>> mara-safety-branch
 
 });

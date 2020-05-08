@@ -127,6 +127,7 @@ const createThread = (data, target) => {
 </article>
 `
 );
+<<<<<<< HEAD
 
 $('.create-new-snippet').on('click', function() {
   console.log('ow!');
@@ -137,6 +138,15 @@ $('.create-new-snippet').on('click', function() {
   // const { thread } = $(this).data();
   // storyID = thread;
   $('.close-modal').on('click', function() {
+=======
+$(`.create-new-snippet #post-to-${thread}`).on('click', function () {
+  thisStoryID = thread;
+  $('.modal-overlay').show();
+  $('#modal-write-snippet').addClass('modal-active');
+
+  $('.close-modal').on('click', function () {
+    thisStoryID = 0;
+>>>>>>> mara-safety-branch
     $('.modal-overlay').hide();
     $('#modal-write-snippet').removeClass('modal-active');
   })
