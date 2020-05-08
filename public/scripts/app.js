@@ -95,6 +95,8 @@ $newStory.submit(function (event) {
 
 })
 
+
+
 $('.login').click(function () {
   console.log('clickie');
   $.get("/api/login/ariane")
