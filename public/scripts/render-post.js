@@ -105,7 +105,8 @@ const createThread = (data, target) => {
       </article>
       <aside>
         <button class='view-pending'>69</button>
-        <button class='contribute' id="post-to-${thread}"><span class="material-icons">create</span></button>
+        <button class='create-new-snippet'>B<button>
+        <button class='contribute create-new-snippet' id="post-to-${thread}"><span class="material-icons">create</span></button>
         <button class='lock-story'>
           <span class="material-icons">done_all</span>
         </button>
@@ -126,6 +127,20 @@ const createThread = (data, target) => {
 </article>
 `
 );
+
+$('.create-new-snippet').on('click', function() {
+  console.log('ow!');
+  $('.modal-overlay').show();
+  $('#modal-write-snippet').addClass('modal-active');
+  $(`#modal-write-snippet form`).data('thread', `${thread}`);
+
+  // const { thread } = $(this).data();
+  // storyID = thread;
+  $('.close-modal').on('click', function() {
+    $('.modal-overlay').hide();
+    $('#modal-write-snippet').removeClass('modal-active');
+  })
+})
 return;
 }
 

@@ -4,7 +4,7 @@ $(() => {
 
   $.ajax({
     method: "GET",
-    url: "/api/database?flag=story&storyid=1",
+    url: "/api/database?flag=story&storyid=4",
     success: (response) => {
       console.log(response.left);
       console.log(response.right);
@@ -15,11 +15,26 @@ $(() => {
     }
   })
 
+  // MY STORIES
+
+  $.ajax({
+    method: "GET",
+    url: "/api/database?flag=user&userid=1",
+    success: (response) => {
+      renderPosts(response.left, '.primary-container');
+      renderPosts(response.right, '.secondary-container');
+    }
+  })
+
+  let storyID = 0;
     // TO DO: .create-new-snippet BUTTON AND listener
     $('.create-new-snippet').on('click', function() {
+      console.log('ow!');
       $('.modal-overlay').show();
       $('#modal-write-snippet').addClass('modal-active');
 
+      // const { thread } = $(this).data();
+      // storyID = thread;
       $('.close-modal').on('click', function() {
         $('.modal-overlay').hide();
         $('#modal-write-snippet').removeClass('modal-active');
@@ -28,26 +43,47 @@ $(() => {
 
     const $newSnippet = $('#modal-write-snippet form');
 
+    let thread = 0;
+
     $newSnippet.submit( function(event) {
       const snippetText = $('#snippet-text').val();
+      console.log(`this data: ${$(this).data("thread")}`);
+      thread = $(this).data('thread');
+      $(this).removeData();
+      console.log(`this should be thread: ${thread}`);
       console.log(snippetText);
 
 
       // WE NEED THE STORY ID TO BE LOADED ON RENDER ***
-      const storyID = 1;
       // AJAX REQUEST TO /stories/:id here for SNIPPET
-      $.post(`/stories/${storyID}`, {snippetText})
+      $.post(`/stories/${thread}`, {snippetText})
       .then((data) => {
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
-        createPendingPost(data, '.secondary-container');
+        const post = {
+          story_id: thread,
+          snippet_author: currentUser.username,
+          content: data[0].contents,
+          date_submitted: data[0].date_created
+        }
+        console.log(data.snippet_author);
+        console.log(data);
+        createPendingPost(post, '.secondary-container');
       })
 
+    // id: 8,
+    // story_id: 5,
+    // user_id: 2,
+    // date_created: "2020-05-08T02:51:02.356Z",
+    // vote_count: 0,
+    // date_accepted: null,
+    // contents: "Here's a story"
 
       event.preventDefault();
     });
 
     $('.create-new-story').on('click', function() {
+      if(!currentUser.id) { return }
       $('.modal-overlay').show();
       $('#modal-write-story').addClass('modal-active');
       $('.close-modal').on('click', function() {
@@ -59,6 +95,8 @@ $(() => {
     const $newStory = $('#modal-write-story form');
 
     $newStory.submit( function(event) {
+      if(!currentUser.id) {return}
+      const userID = currentUser.id;
       const storyTitle = $('#story-title').val();
       const storyText = $('#story-text').val();
 
@@ -66,22 +104,30 @@ $(() => {
       const storyTags = tagString.split(' ');
       // console.log(storyTitle, storyText, storyTags);
 
-      $.post(`/stories/`, {storyTitle, storyText, storyTags})
+      $.post(`/stories/`, { userID, storyTitle, storyText, storyTags})
       .then((data) => {
         console.log(data);
+        const post = {
+          thread_id: data.storyID,
+          story: storyTitle,
+          story_owner: currentUser.username,
+          content: storyText,
+          born_on: new Date(),
+          tags: storyTags
+        }
+        createThread(post, '.primary-container');
       })
 
       event.preventDefault();
     })
-});
 
-  $('.login').click(function(){
-    console.log('clickie');
-    $.get("/api/login/ariane")
-    .done(res => {
-      currentUser = res;
-      $('.login').text(currentUser.username);
+    $('.login').click(function(){
+      console.log('clickie');
+      $.get("/api/login/ariane")
+      .done(res => {
+        currentUser = res;
+        $('.login').text(currentUser.username);
+      })
     })
-  })
 
 });

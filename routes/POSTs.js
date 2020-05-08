@@ -15,6 +15,7 @@ module.exports = (db) => {
     db.query('INSERT INTO snippets(user_id, story_id, contents) VALUES($1, $2, $3) RETURNING *;', [userID, storyID, snippetText])
     .then((data) => {
       // sending back the data to DOM
+      //
       res.json(data.rows);
     })
 
@@ -28,12 +29,11 @@ module.exports = (db) => {
     router.post("/", function(req, res) {
 
       // FUNCTION CHECK USER HERE
-      const userID = 2;
-      const {storyTitle, storyText, storyTags} = req.body;
+      const {userID, storyTitle, storyText, storyTags} = req.body;
       db.query('INSERT INTO stories(owner_id, name, content_tags) VALUES($1, $2, $3) RETURNING id, name', [ userID, storyTitle, storyTags ])
       .then((storyData) => {
         const storyID = storyData.rows[0].id;
-        db.query('INSERT INTO snippets(user_id, story_id, contents) VALUES($1, $2, $3) RETURNING *', [ userID, storyID, storyText])
+        db.query('INSERT INTO snippets(user_id, story_id, contents, date_created, date_accepted) VALUES($1, $2, $3, Now(), Now()) RETURNING *', [ userID, storyID, storyText])
         .then((data) => {
           const snippetID = data.rows[0].id;
           res.json({storyID, snippetID});
