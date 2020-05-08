@@ -44,6 +44,7 @@ const snippetsRoutes = require('./routes/widgets');
 const storiesRoutes = require('./routes/stories');
 const databaseRoutes = require("./routes/database");
 const postRoutes = require("./routes/posts");
+const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,7 +53,12 @@ app.use("/api/snippets", snippetsRoutes(db));
 app.use('/api/stories', storiesRoutes(db));
 app.use("/api/database", databaseRoutes(db));
 // Note: mount other resources here, using the same pattern above
+<<<<<<< HEAD
 app.use("/stories", postRoutes(db));
+=======
+app.use("/api/login", loginRoutes(db));
+
+>>>>>>> feature/login
 
 // Home page
 // Warning: avoid creating more routes in this file!

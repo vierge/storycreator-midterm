@@ -1,5 +1,7 @@
 $(() => {
 
+  let currentUser;
+
   $.ajax({
     method: "GET",
     url: "/api/database?flag=story&storyid=1",
@@ -12,5 +14,14 @@ $(() => {
       console.log("CAST MAGIC");
     }
   })
-});
 
+  $('.login').click(function(){
+    console.log('clickie');
+    $.get("/api/login/ariane")
+    .done(res => {
+      currentUser = res;
+      $('.login').text(currentUser.username);
+    })
+  })
+
+});
