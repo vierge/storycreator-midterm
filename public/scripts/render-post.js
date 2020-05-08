@@ -127,7 +127,8 @@ const createThread = (data, target) => {
 </article>
 `
 );
-$(`.create-new-snippet #post-to-${thread}`).on('click', function () {
+$(`.create-new-snippet`).on('click', function () {
+  if(!currentUser.id) {return}  // #post-to-${thread} ????
   thisStoryID = thread;
   $('.modal-overlay').show();
   $('#modal-write-snippet').addClass('modal-active');

@@ -1,7 +1,7 @@
+let currentUser;
+let thisStoryID;
 $(() => {
 
-  let currentUser;
-  let thisStoryID;
 
   $.ajax({
     method: "GET",
@@ -31,7 +31,7 @@ $(() => {
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
         const post = {
-          story_id: thread,
+          story_id: thisStoryID,
           snippet_author: currentUser.username,
           content: data[0].contents,
           date_submitted: data[0].date_created
@@ -61,12 +61,10 @@ $(() => {
       $('#modal-write-story').removeClass('modal-active');
     })
   })
-})
 
-const $newStory = $('#modal-write-story form');
+  const $newStory = $('#modal-write-story form');
 
 $newStory.submit(function (event) {
-  if (!currentUser.id) { return }
   const userID = currentUser.id;
   const storyTitle = $('#story-title').val();
   const storyText = $('#story-text').val();
@@ -90,6 +88,7 @@ $newStory.submit(function (event) {
     })
 
   event.preventDefault();
+
 })
 
 $('.login').click(function () {
@@ -100,3 +99,5 @@ $('.login').click(function () {
       $('.login').text(currentUser.username);
     })
 });
+
+}); // BOTTOM OF JQUERY DOCUMENT.ON
