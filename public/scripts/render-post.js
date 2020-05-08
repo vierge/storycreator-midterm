@@ -126,6 +126,17 @@ const createThread = (data, target) => {
 </article>
 `
 );
+$(`#post-to-${thread}`).data('storyID', `${thread}`);
+$('.create-new-snippet').on('click', function () {
+  storyID = $(this).data('storyID');
+  $('.modal-overlay').show();
+  $('#modal-write-snippet').addClass('modal-active');
+
+  $('.close-modal').on('click', function () {
+    $('.modal-overlay').hide();
+    $('#modal-write-snippet').removeClass('modal-active');
+  })
+})
 return;
 }
 
