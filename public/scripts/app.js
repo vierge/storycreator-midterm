@@ -44,6 +44,7 @@ $(() => {
     const $newSnippet = $('#modal-write-snippet form');
 
     $newSnippet.submit( function(event) {
+      const userID = currentUser.id;
       const snippetText = $('#snippet-text').val();
       console.log(`this data: ${$(this).data("thread")}`);
       storyID = $(this).data('thread');
@@ -54,8 +55,9 @@ $(() => {
 
       // WE NEED THE STORY ID TO BE LOADED ON RENDER ***
       // AJAX REQUEST TO /stories/:id here for SNIPPET
-      $.post(`/stories/${storyID}`, {snippetText})
+      $.post(`/stories/${storyID}`, {userID, snippetText})
       .then((data) => {
+
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
         const post = {
@@ -67,6 +69,9 @@ $(() => {
         console.log(data.snippet_author);
         console.log(data);
         createPendingPost(post, '.secondary-container');
+        $newSnippet.trigger('reset');
+        $('.modal-overlay').hide();
+        $('#modal-write-story').removeClass('modal-active');
       })
 
     // id: 8,
@@ -80,6 +85,7 @@ $(() => {
       event.preventDefault();
     });
 
+// NEW STORY MODAL
     $('.create-new-story').on('click', function() {
       if(!currentUser.id) { return }
       $('.modal-overlay').show();
@@ -90,10 +96,11 @@ $(() => {
       })
     })
 
+// NEW STORY FORM
     const $newStory = $('#modal-write-story form');
 
     $newStory.submit( function(event) {
-      if(!currentUser.id) {return}
+      // if(!currentUser.id) {return}
       const userID = currentUser.id;
       const storyTitle = $('#story-title').val();
       const storyText = $('#story-text').val();
@@ -104,7 +111,6 @@ $(() => {
 
       $.post(`/stories/`, { userID, storyTitle, storyText, storyTags})
       .then((data) => {
-        console.log(data);
         const post = {
           thread_id: data.storyID,
           story: storyTitle,
@@ -114,6 +120,9 @@ $(() => {
           tags: storyTags
         }
         createThread(post, '.primary-container');
+        $newStory.trigger('reset');
+        $('.modal-overlay').hide();
+        $('#modal-write-story').removeClass('modal-active');
       })
 
       event.preventDefault();

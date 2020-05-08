@@ -7,7 +7,7 @@ module.exports = (db) => {
   router.post("/:id", function(req, res) {
 
   // USERID HARDCODED, FUNCTION CHECK USER HERE or cookies
-    const userID = 2;
+    const userID = req.body.userID;
     const storyID = req.params.id;
     const snippetText = req.body.snippetText;
     console.log(snippetText);
