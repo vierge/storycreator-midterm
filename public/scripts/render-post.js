@@ -51,7 +51,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
     upvotes++;
     console.log("click");
     $.post(`/stories/vote/${data.post_id}`).then(res => {return})
-    $(this).next().empty().text(`VOTTTTTTEEE: ${upvotes}`);
+    $(this).next().empty().text(`${upvotes}`);
     event.preventDefault();
   })
   return;

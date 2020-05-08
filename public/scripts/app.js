@@ -103,7 +103,7 @@ $newStory.submit(function (event) {
 })
 
 $('.logo').on('click', () => {
-  dbCall('flag=home').then(() => {return});
+  dbCall('flag=home');
 });
 
 $('.login').click(function () {
