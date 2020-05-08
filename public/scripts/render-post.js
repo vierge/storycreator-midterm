@@ -126,13 +126,13 @@ const createThread = (data, target) => {
 </article>
 `
 );
-$(`#post-to-${thread}`).data('storyID', `${thread}`);
-$('.create-new-snippet').on('click', function () {
-  storyID = $(this).data('storyID');
+$(`.create-new-snippet #post-to-${thread}`).on('click', function () {
+  thisStoryID = thread;
   $('.modal-overlay').show();
   $('#modal-write-snippet').addClass('modal-active');
 
   $('.close-modal').on('click', function () {
+    thisStoryID = 0;
     $('.modal-overlay').hide();
     $('#modal-write-snippet').removeClass('modal-active');
   })
