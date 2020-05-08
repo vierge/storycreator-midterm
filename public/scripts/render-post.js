@@ -99,7 +99,7 @@ const createThread = (data, target) => {
   <!-- STORY -->
   <article class='story'>
     <header>
-      <a href=#><h1 class='story-title view-story'>${name}</h1></a>
+      <a href=#><h1 class='story-title view-story'>@${name}</h1></a>
       <a class='story-owner' href=# >@${owner}</a>
     </header>
 
@@ -111,8 +111,6 @@ const createThread = (data, target) => {
         </section>
       </article>
       <aside>
-        <button class='view-pending'>69</button>
-        <button class='create-new-snippet'>B<button>
         <button class='contribute create-new-snippet' id="post-to-${thread}"><span class="material-icons">create</span></button>
         <button class='lock-story'>
           <span class="material-icons">done_all</span>
@@ -126,7 +124,7 @@ const createThread = (data, target) => {
         <div>${created}</div>
         <div>|</div>
         <div id="${thread}-last-updated">last updated: ${completed ? completed : created}</div>
-        <div><a href=#>+ contribute</a></div>
+        <div><a href=# class='create-new-snippet'>+ contribute</a></div>
         <div><button class="view-story">view contributions</a></div>
       </div>
     </footer>
@@ -135,7 +133,8 @@ const createThread = (data, target) => {
 `
 );
 $(`.create-new-snippet`).on('click', function () {
-  if(!currentUser.id) {return}  // #post-to-${thread} ????
+  if(!currentUser.id) {return}
+  // .then(() => {return})  // #post-to-${thread} ????
   thisStoryID = thread;
   $('.modal-overlay').show();
   $('#modal-write-snippet').addClass('modal-active');
@@ -145,6 +144,7 @@ $(`.create-new-snippet`).on('click', function () {
     $('.modal-overlay').hide();
     $('#modal-write-snippet').removeClass('modal-active');
   })
+  dbCall(`flag=story&storyid=${thread}`).then(() => {return})
 })
 $(`.view-story`).on('click', function(event) {
   console.log('click');
