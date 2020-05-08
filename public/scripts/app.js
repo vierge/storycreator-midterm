@@ -4,7 +4,7 @@ $(() => {
 
   $.ajax({
     method: "GET",
-    url: "/api/database?flag=story&storyid=4",
+    url: "/api/database?flag=story&storyid=1",
     success: (response) => {
       console.log(response.left);
       console.log(response.right);
@@ -17,14 +17,14 @@ $(() => {
 
   // MY STORIES
 
-  $.ajax({
-    method: "GET",
-    url: "/api/database?flag=user&userid=1",
-    success: (response) => {
-      renderPosts(response.left, '.primary-container');
-      renderPosts(response.right, '.secondary-container');
-    }
-  })
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/database?flag=user&userid=1",
+  //   success: (response) => {
+  //     renderPosts(response.left, '.primary-container');
+  //     renderPosts(response.right, '.secondary-container');
+  //   }
+  // })
 
   let storyID = 0;
     // TO DO: .create-new-snippet BUTTON AND listener
@@ -43,20 +43,18 @@ $(() => {
 
     const $newSnippet = $('#modal-write-snippet form');
 
-    let thread = 0;
-
     $newSnippet.submit( function(event) {
       const snippetText = $('#snippet-text').val();
       console.log(`this data: ${$(this).data("thread")}`);
-      thread = $(this).data('thread');
+      storyID = $(this).data('thread');
       $(this).removeData();
-      console.log(`this should be thread: ${thread}`);
+      console.log(`this should be thread: ${storyID}`);
       console.log(snippetText);
 
 
       // WE NEED THE STORY ID TO BE LOADED ON RENDER ***
       // AJAX REQUEST TO /stories/:id here for SNIPPET
-      $.post(`/stories/${thread}`, {snippetText})
+      $.post(`/stories/${storyID}`, {snippetText})
       .then((data) => {
         // ARRAY WITH OBJ - NEW SNIPPET RETURNED
         // createPendingPost(data, '.secondary-container')
