@@ -39,6 +39,10 @@ $(() => {
         console.log(data.snippet_author);
         console.log(data);
         createPendingPost(post, '.secondary-container');
+
+        $newSnippet.trigger('reset');
+        $('.modal-overlay').hide();
+        $('#modal-write-snippet').removeClass('modal-active');
       })
 
     // id: 8,
@@ -85,6 +89,9 @@ $newStory.submit(function (event) {
         tags: storyTags
       }
       createThread(post, '.primary-container');
+      $newStory.trigger('reset');
+      $('.modal-overlay').hide();
+      $('#modal-write-story').removeClass('modal-active');
     })
 
   event.preventDefault();
