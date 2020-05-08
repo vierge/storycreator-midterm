@@ -53,12 +53,9 @@ app.use("/api/snippets", snippetsRoutes(db));
 app.use('/api/stories', storiesRoutes(db));
 app.use("/api/database", databaseRoutes(db));
 // Note: mount other resources here, using the same pattern above
-<<<<<<< HEAD
 app.use("/stories", postRoutes(db));
-=======
 app.use("/api/login", loginRoutes(db));
 
->>>>>>> feature/login
 
 // Home page
 // Warning: avoid creating more routes in this file!

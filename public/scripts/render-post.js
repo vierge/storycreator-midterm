@@ -21,7 +21,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
   const text = data.content;
   // remember upvotes!!!!
   const footer = new Date(data.date_submitted);
-  const upvotes = data.upvotes;
+  const upvotes = data.upvotes ? data.upvotes : 0;
 
   $(target).prepend(`
   <article class='snippet pending'>
