@@ -47,6 +47,7 @@ const createPendingPost = function (data, target) { // takes a json object that 
     </footer>
   </article>
   `);
+
   return;
 }
 
@@ -142,9 +143,8 @@ $(`.create-new-snippet`).on('click', function () {
 $(`.view-story`).on('click', function(event) {
   console.log('click');
   // thisStoryID = thread; // just in case
-  dbCall(`flag=story&storyid=${thread}`).then(res => {return});
+  dbCall(`flag=story&storyid=${thread}`).then(() => {return}); // investigate this
   // thisStoryID = 0; // also just in case
-  return;
 });
 return;
 }
