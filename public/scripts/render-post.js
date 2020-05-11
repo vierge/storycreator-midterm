@@ -17,6 +17,7 @@ const renderPosts = (postArray, target) => {
 }
 
 const createPendingPost = function (data, target) { // takes a json object that is an array of post information
+  const owner = data.story_owner;
   const author = data.snippet_author;
   const text = data.content;
   // remember upvotes!!!!
@@ -53,10 +54,10 @@ const createPendingPost = function (data, target) { // takes a json object that 
     $.post(`/stories/vote/${data.post_id}`).then(res => {return})
     $(this).next().empty().text(`${upvotes}`);
     event.preventDefault();
-  })
-  $(`.accept`).click(function(event) {
-    console.log(`${currentUser.username}, ${data.story_owner}`);
-    if(currentUser.username != data.story_owner) {return;}
+  });
+  $(`.accept`).click(function() {
+    console.log(`${currentUser.username}, ${owner}`);
+    if(currentUser.username != owner) {return}
     $.post(`/stories/accept/${data.post_id}`)
     .then(() => {
       console.log("story_accepted! thank you!");
